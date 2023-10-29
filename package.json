@@ -1,0 +1,55 @@
+{
+  "name": "hexo-theme-dreamland",
+  "version": "0.0.0-test",
+  "description": "A Simple and Card UI Design theme for Hexo",
+  "private": false,
+  "type": "module",
+  "keywords": [
+    "hexo",
+    "theme",
+    "dreamland",
+    "dreamland book",
+    "ROYIANS",
+    "hexo-theme-dreamland"
+  ],
+  "license": "Apache-2.0",
+  "homepage": "https://blog.vidorra.life/",
+  "author": {
+    "email": "admin@royians.cn",
+    "name": "ROYIANS",
+    "url": "https://www.royians.cn"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/royians/hexo-theme-dreamland.git"
+  },
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "devDependencies": {
+    "@css-render/vue3-ssr": "^0.15.12",
+    "@nuxt/devtools": "latest",
+    "@nuxtjs/i18n": "8.0.0-rc.5",
+    "@tailwindcss/typography": "^0.5.10",
+    "autoprefixer": "^10.4.16",
+    "front-matter": "^4.0.2",
+    "hexo-fs": "^4.1.1",
+    "naive-ui": "^2.35.0",
+    "nanoid": "3.3.4",
+    "nuxt": "^3.8.0",
+    "postcss": "^8.4.31",
+    "remixicon": "^3.5.0",
+    "shelljs": "^0.8.5",
+    "tailwindcss": "^3.3.5",
+    "vue": "^3.3.7",
+    "vue-router": "^4.2.5"
+  },
+  "dependencies": {
+    "@pinia/nuxt": "^0.5.1",
+    "pinia": "^2.1.7"
+  }
+}
