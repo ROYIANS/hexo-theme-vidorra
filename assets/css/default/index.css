@@ -1,0 +1,109 @@
+@import "../common/highlight.css";
+@import "../common/heti.css";
+
+:root {
+    --mask-width: .7rem;
+    --mask-border-width: calc(var(--mask-width) / 2);
+    --curve: cubic-bezier(.08, .82, .2, 1);
+    --curve-out: cubic-bezier(.95, .05, .8, .04);
+    --duration: .3s;
+    --h-margin: 1.5rem;
+    --side-width: 173px;
+}
+
+* {
+    text-shadow: 0 0 1.25px #828282;
+}
+
+html {
+    overflow: auto;
+    overflow: overlay;
+}
+
+body {
+    margin: var(--mask-width) var(--mask-width) 0 !important;
+    text-rendering: optimizeSpeed;
+}
+
+header::-webkit-scrollbar {
+    display: none;
+}
+
+@media (min-width: 2500px) {
+    :root {
+        --side-width: 260px;
+        --h-margin: 1.5vw;
+    }
+
+    header {
+        font-size: 1.25rem
+    }
+}
+
+@media (min-width: 1900px) {
+    :root {
+        --side-width: 200px;
+        --h-margin: 1.4vw;
+    }
+}
+
+@media (min-width: 1535px) {
+    :root {
+        --side-width: 186px;
+        --h-margin: 1.6rem;
+    }
+}
+
+@media (max-width: 1279px) {
+    :root {
+        --h-margin: 1.25rem;
+        --side-width: 170px
+    }
+}
+
+@media (max-width: 1023px) {
+    :root {
+        --side-width: 145px;
+        --mask-width: .4rem;
+        --h-margin: 1rem
+    }
+}
+
+@media (max-width: 767px) {
+    :root {
+        --mask-width: 1.5vw;
+        --side-width: 0px;
+    }
+}
+
+.fullscreen-mode {
+    --mask-width: 0px
+}
+
+::selection {
+    @apply bg-gray-700 dark:bg-gray-200;
+    @apply text-white dark:text-zinc-900;
+}
+
+::-webkit-scrollbar {
+    width: 16px;
+    height: 16px;
+}
+
+::-webkit-scrollbar-corner, ::-webkit-scrollbar-track {
+    background: #000000;
+}
+
+::-webkit-scrollbar-thumb {
+    border: 5px solid transparent;
+    border-radius: 8px;
+    background: rgba(125, 125, 125, 30%) content-box;
+}
+
+::-webkit-scrollbar-corner, ::-webkit-scrollbar-track {
+    background: #faf8f5;
+}
+
+.dark ::-webkit-scrollbar-corner, .dark ::-webkit-scrollbar-track {
+    background: #121212;
+}

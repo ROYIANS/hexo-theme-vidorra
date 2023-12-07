@@ -1,12 +1,13 @@
+import enUS from "./en-US.js";
+import zhCN from "./zh-CN.js";
+import zhTW from "./zh-TW.js";
+
 export default defineI18nConfig(() => ({
   legacy: false,
-  locale: 'en',
+  locale: 'zh-CN',
   messages: {
-    en: {
-      welcome: 'Welcome'
-    },
-    fr: {
-      welcome: 'Bienvenue'
-    }
+    'en-US': enUS,
+    'zh-CN': zhCN,
+    'zh-TW': zhTW
   }
 }))

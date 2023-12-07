@@ -25,7 +25,7 @@
             <template #icon>
               <i class="ri-search-2-fill" />
             </template>
-            _p('search.title')
+            {{ $t('search.title') }}
             <span class="hidden leading-none sm:block text-gray-400 px-1.5 border border-gray-300 rounded-md">
                 <span class="sr-only text-xs">Press </span>
                 <kbd class="font-sans">
@@ -62,6 +62,7 @@
 <script setup lang="ts">
 import { NButton, NDropdown, useMessage } from 'naive-ui'
 import locales from "~/locales/locales";
+const { locale } = useI18n()
 const props = defineProps({
   siteTitle: {
     type: String,
@@ -79,7 +80,7 @@ const props = defineProps({
 
 const message = useMessage()
 const handleSelect = (key: string | number) => {
-  message.info(String(key))
+  locale.value = key
 }
 
 const headerRef = ref(null)

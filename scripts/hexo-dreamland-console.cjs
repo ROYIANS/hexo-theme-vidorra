@@ -6,14 +6,18 @@ const copyAssets = require("./hexo-copy-assets.cjs");
 hexo.extend.console.register('dreamland', 'serve and build for hexo-dreamland-book blog', {
   options: [
     { name: '-s, --server', desc: 'Start Blog Server' },
-    { name: '-g, --generate', desc: 'Generate SSR Files For Blog' }
+    { name: '-g, --generate', desc: 'Generate SSR Files For Blog' },
+    { name: '-dev, --dev', desc: 'Build Raw Data For Dev' }
   ]
-}, (args = { s: true, g: false }) => {
+}, (args = { s: true, g: false, dev: false }) => {
   hexo.source.watch().then(async () => {
     // do generate Blog Data
     hexo.locals.invalidate()
     await generateRawData(hexo)
     await copyAssets(hexo)
+    if (args.dev) {
+      return process.exit()
+    }
     if (args.s || args.server) {
       // do server
       blogStarter(hexo)

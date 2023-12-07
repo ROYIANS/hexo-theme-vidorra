@@ -8,12 +8,10 @@
       </n-notification-provider>
     </n-message-provider>
   </n-loading-bar-provider>
-  <n-global-style/>
 </template>
 <script setup lang="ts">
 import {
   NDialogProvider,
-  NGlobalStyle,
   NLoadingBarProvider,
   NMessageProvider,
   NNotificationProvider

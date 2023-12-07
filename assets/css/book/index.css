@@ -1,9 +1,9 @@
-@import "highlight.css";
+@import "../common/highlight.css";
 @import "toast.css";
 @import "tk_comment.css";
 @import "post.css";
 @import "book_chapter.css";
-@import "heti.css";
+@import "../common/heti.css";
 @import "doc_search.css";
 
 :root {
