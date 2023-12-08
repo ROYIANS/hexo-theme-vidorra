@@ -46,8 +46,10 @@ export default {
                 'theme-orange': '#ff953e',
                 'default-theme': {
                     DEFAULT: '#f0f0f0',
+                    background: '#fffcf5',
                     sideline: '#699054',
-                    primary: '#699054'
+                    primary: '#699054',
+                    sidelinelight: '#a3bd94'
                 }
             },
             minHeight: {

@@ -9,6 +9,9 @@
     --duration: .3s;
     --h-margin: 1.5rem;
     --side-width: 173px;
+    --content-pd-r: calc(var(--h-margin) * 1.5);
+    --content-pd-l: calc(var(--h-margin) * 2);
+    --content-min-h: calc(100vh - var(--h-margin))
 }
 
 * {
@@ -17,7 +20,6 @@
 
 html {
     overflow: auto;
-    overflow: overlay;
 }
 
 body {
@@ -63,7 +65,7 @@ header::-webkit-scrollbar {
 
 @media (max-width: 1023px) {
     :root {
-        --side-width: 145px;
+        /*--side-width: 145px;*/
         --mask-width: .4rem;
         --h-margin: 1rem
     }
@@ -88,6 +90,7 @@ header::-webkit-scrollbar {
 ::-webkit-scrollbar {
     width: 16px;
     height: 16px;
+    @apply hidden
 }
 
 ::-webkit-scrollbar-corner, ::-webkit-scrollbar-track {
@@ -97,13 +100,18 @@ header::-webkit-scrollbar {
 ::-webkit-scrollbar-thumb {
     border: 5px solid transparent;
     border-radius: 8px;
-    background: rgba(125, 125, 125, 30%) content-box;
+    background: content-box;
+    @apply bg-default-theme-sidelinelight;
 }
 
 ::-webkit-scrollbar-corner, ::-webkit-scrollbar-track {
-    background: #faf8f5;
+    @apply bg-default-theme-sideline
 }
 
-.dark ::-webkit-scrollbar-corner, .dark ::-webkit-scrollbar-track {
-    background: #121212;
+.line-h {
+    background-image: url(../../image/line-h.webp);
+}
+
+.line-v {
+    background-image: url(../../image/line.webp);
 }

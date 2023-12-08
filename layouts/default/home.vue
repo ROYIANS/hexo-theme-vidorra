@@ -1,6 +1,6 @@
 <template>
   <DefaultLayout>
-    <div>123455</div>
+    <div>123455这是我正常的字体夹杂着 English 在里面</div>
   </DefaultLayout>
 </template>
 
