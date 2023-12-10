@@ -61,7 +61,7 @@
     </div>
   </header>
   <!--  手机顶部导航栏-->
-  <div class="md:flex hidden bg-default-theme-primary w-full h-10 fixed transition-all duration-[--duration] ease-[--curve]
+  <div class="md:flex hidden bg-default-theme-primary w-full h-12 fixed transition-all duration-[--duration] ease-[--curve]
               z-9999 left-0 -top-px justify-between items-center select-none dark:bg-black">
     <div class="shrink grow basis-auto h-full text-left ml-3 mr-12 max-w-[50%] overflow-hidden flex justify-start items-center no-underline">
       <router-link to="/" class="shrink-0">
@@ -69,10 +69,10 @@
                     after:w-1 after:h-1 after:top-1 after:-right-1 after:rounded after:border-white
                     after:border after:border-solid after:bg-white">
           <template v-if="headerConfig.showLogo">
-            <div v-if="logo.startsWith('ri-')" class="w-6 h-6 text-6 flex items-center justify-center font-normal">
+            <div v-if="logo.startsWith('ri-')" class="w-8 h-8 text-6 flex items-center justify-center font-normal">
               <i :class="logo" />
             </div>
-            <div v-else class="h-6">
+            <div v-else class="h-8">
               <img alt="logo" :src="logo" class="h-full" />
             </div>
           </template>
@@ -80,7 +80,7 @@
         </div>
       </router-link>
     </div>
-    <div class="flex shrink-0 grow-0 basis-auto px-2 h-full items-center text-xl text-right text-white font-normal
+    <div class="flex shrink-0 grow-0 basis-auto px-5 h-full items-center text-2xl text-right text-white font-normal
                 transition-all duration-[--duration] ease-[--curve] cursor-pointer"
          @mouseover="onMouseEnterToggle"
          @mouseleave="onMouseLeaveToggle"
@@ -90,7 +90,7 @@
     </div>
   </div>
   <!--  左侧侧边栏功能按钮-->
-  <nav class="md:hidden bg-white dark:bg-zinc-950 text-gray-700 dark:text-gray-200 -bottom-px select-none
+  <nav class="md:hidden bg-white bg-curve-pattern dark:bg-zinc-950 text-gray-700 dark:text-gray-200 -bottom-px select-none
               my-[--mask-width] p-2 h-16 w-[--side-width] fixed border-r border-dashed border-gray-200 dark:border-r-zinc-800">
     <ul class="w-full h-full flex gap-4 items-center justify-center">
       <li class="blog-button-sm" title="搜索" @click="button.trigger">
@@ -121,15 +121,20 @@
               bg-white z-999999 shadow-type1 transition-all duration-500 dark:bg-zinc-900 opacity-80 text-gray-700
               dark:text-gray-200">
       <section>
-        <!-- 搜索 -->
+        <!-- 标题 -->
         <div class="search-box bg-white dark:bg-zinc-900 w-full h-14 leading-[normal] py-3 px-5 sticky top-0 left-0 z-1">
-          <n-input round placeholder="搜索">
-            <template #prefix>
-              <i class="ri-search-line"></i>
-            </template>
-          </n-input>
+          <h1 class="site-title heti--serif text-center text-3xl leading-none relative break-all">
+            {{ siteTitle }}
+          </h1>
         </div>
         <div class="sticky top-14 inset-x-0 w-full h-8 bg-gradient-to-b from-white pointer-events-none z-1 dark:from-zinc-900"></div>
+        <!-- description/logo -->
+        <div class="mx-auto mb-2 w-4/5 text-center items-center justify-center flex">
+          <p v-if="headerConfig?.description?.type !== 'image'" class="px-1.5 text-white text-xs bg-default-theme-primary">
+            {{ headerConfig?.description?.type !== 'subtitle' ? subTitle : headerConfig?.description?.content }}
+          </p>
+          <img v-else alt="description" :src="headerConfig?.description?.content" class="px-1.5 w-1/2" />
+        </div>
         <!-- 功能按钮 -->
         <div class="w-full px-5">
           <ul class="w-full h-full flex gap-4 items-center justify-center">
@@ -146,13 +151,6 @@
               <i class="ri-disc-line"></i>
             </li>
           </ul>
-        </div>
-        <!-- description/logo -->
-        <div class="mx-auto mt-4 mb-2 w-4/5 text-center items-center justify-center flex">
-          <p v-if="headerConfig?.description?.type !== 'image'" class="px-1.5 text-white text-xs bg-default-theme-primary">
-            {{ headerConfig?.description?.type !== 'subtitle' ? subTitle : headerConfig?.description?.content }}
-          </p>
-          <img v-else alt="description" :src="headerConfig?.description?.content" class="px-1.5 w-1/2" />
         </div>
         <!-- 菜单 -->
         <nav class="w-full py-3 px-5">
@@ -279,16 +277,16 @@ const toggleSidebar = () => {
 
 <style>
 .blog-button {
-  @apply bg-gray-100 text-gray-700 cursor-pointer dark:bg-zinc-950 dark:bg-opacity-20 dark:text-gray-200;
+  @apply text-gray-700 cursor-pointer dark:bg-opacity-20 dark:text-gray-200;
   @apply hover:bg-default-theme-primary hover:text-white hover:dark:bg-default-theme-primary hover:dark:text-white;
   @apply flex items-center justify-center rounded-sm;
   box-shadow: rgba(0, 0, 0, 0.1) 0 1px 2px 0;
 }
 .blog-button-sm {
-  @apply blog-button w-6 h-6;
+  @apply bg-white dark:bg-zinc-950 blog-button w-6 h-6;
 }
 
 .blog-button-lg {
-  @apply blog-button w-12 h-12;
+  @apply bg-gray-100 dark:bg-zinc-950 blog-button w-12 h-12;
 }
 </style>

@@ -20,6 +20,7 @@
 
 html {
     overflow: auto;
+    font-size: 16px;
 }
 
 body {
@@ -29,6 +30,16 @@ body {
 
 header::-webkit-scrollbar {
     display: none;
+}
+
+.bg-curve-pattern {
+    background-image: url(../../image/curve-pattern.png);
+    background-size: 5px 8px !important;
+    background-repeat: repeat;
+}
+
+.dark .bg-curve-pattern {
+    background-image: url(../../image/curve-pattern-dark.png);
 }
 
 @media (min-width: 2500px) {

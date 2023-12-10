@@ -21,7 +21,7 @@
     <Header :site-title="siteTitle" :page-title="pageTitle" :nav-items="navItems" :sub-title="subTitle"
             :description="description" :logo="logoURI" :header-config="headerConfig"/>
     <main class="relative md:min-h-40 min-h-[--content-min-h] ml-[--side-width] pt-[--h-margin] bg-default-theme-background dark:bg-zinc-900
-               pr-[--content-pd-r] pl-[--content-pd-l] md:mt-10 md:pr-0 md:pl-0 md:pt-0 md:block"
+               pr-[--content-pd-r] pl-[--content-pd-l] md:mt-12 md:pr-0 md:pl-0 md:pt-0 md:block"
           style="box-shadow: rgba(0, 0, 0, 0.05) 0 1px 2px 0;">
       <slot></slot>
       <div class="hidden md:hidden dark:hidden absolute inset-0 m-5 pointer-events-none">
@@ -32,6 +32,9 @@
       </div>
     </main>
     <Footer :author="siteAuthor" :links="socialLinks"/>
+    <n-back-top class="!w-8 !h-8 !rounded-sm !min-w-0 !bg-default-theme-primary-100 hover:!bg-default-theme-primary-800">
+      <i class="ri-skip-up-line" />
+    </n-back-top>
   </n-config-provider>
 </template>
 
@@ -42,7 +45,7 @@ import 'remixicon/fonts/remixicon.css';
 import Header from "./_partial/Header.vue";
 import Footer from "./_partial/Footer.vue";
 import { useDark } from '@vueuse/core'
-import { NConfigProvider, darkTheme } from 'naive-ui'
+import { NConfigProvider, NBackTop, darkTheme } from 'naive-ui'
 
 const {data: siteConfig} = await useAsyncData("siteConfig", () => API.getSiteInfo())
 
@@ -126,7 +129,7 @@ useSeoMeta({
 })
 useHead({
   bodyAttrs: {
-    class: 'heti--serif text-base text-gray-700 dark:text-gray-200 scroll-smooth'
+    class: 'heti--sans text-base text-gray-700 dark:text-gray-200'
   },
   link: [
     {rel: "preconnect", href: "https://fonts.googleapis.com"},
