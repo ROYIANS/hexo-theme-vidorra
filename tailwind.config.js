@@ -49,7 +49,22 @@ export default {
                     background: '#fffcf5',
                     sideline: '#699054',
                     primary: '#699054',
-                    sidelinelight: '#a3bd94'
+                    'primary-900': '#779a66',
+                    'primary-800': '#84a476',
+                    'primary-700': '#92ae85',
+                    'primary-600': '#a0b894',
+                    'primary-500': '#adc2a3',
+                    'primary-400': '#bbcdb3',
+                    'primary-300': '#c8d7c2',
+                    'primary-200': '#d6e1d1',
+                    'primary-100': '#e4ebe0',
+                    'primary-dark-100': '#5f834f',
+                    'primary-dark-200': '#567647',
+                    'primary-dark-300': '#4c693f',
+                    'primary-dark-400': '#435c37',
+                    'primary-dark-500': '#394f2f',
+                    'primary-dark-600': '#304128',
+                    'primary-dark-700': '#263420'
                 }
             },
             minHeight: {
@@ -93,6 +108,9 @@ export default {
                 '999999': 999999,
                 '2147483646': 2147483646,
                 'auto': 'auto',
+            },
+            boxShadow: {
+                'type1': 'rgba(100, 100, 111, 0.2) 0 7px 29px 0'
             },
             keyframes: {
                 'default-mask-mt': {

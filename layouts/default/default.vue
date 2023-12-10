@@ -1,29 +1,30 @@
 <template>
-  <n-config-provider :theme-overrides="themeOverrides">
+  <n-config-provider :theme-overrides="themeOverrides" :theme="curTheme">
     <div class="fixed z-999 bg-default-theme-sideline pointer-events-none animate-default-mask-mt
-      border-solid border-default-theme-sideline border-[length:--mask-border-width]
+      border-solid border-default-theme-sideline border-[length:--mask-border-width] dark:bg-black dark:border-black
       top-0 w-full left-0 h-[--mask-width]"></div>
     <div class="fixed z-999 bg-default-theme-sideline pointer-events-none animate-default-mask-mb
-      border-solid border-default-theme-sideline border-[length:--mask-border-width]
+      border-solid border-default-theme-sideline border-[length:--mask-border-width] dark:bg-black dark:border-black
       bottom-0 w-full left-0 h-[--mask-width]"></div>
     <div class="fixed z-999 bg-default-theme-sideline pointer-events-none animate-default-mask-ml
-      border-solid border-default-theme-sideline border-[length:--mask-border-width]
+      border-solid border-default-theme-sideline border-[length:--mask-border-width] dark:bg-black dark:border-black
       left-0 w-[--mask-width] bottom-0 h-[80vh]"></div>
     <div class="fixed z-999 bg-default-theme-sideline pointer-events-none animate-default-mask-mr
-      border-solid border-default-theme-sideline border-[length:--mask-border-width]
+      border-solid border-default-theme-sideline border-[length:--mask-border-width] dark:bg-black dark:border-black
       right-0 w-[--mask-width] bottom-0 h-[80vh]"></div>
     <div class="fixed z-999 bg-default-theme-sideline pointer-events-none animate-default-mask-ml
-      border-solid border-default-theme-sideline border-[length:--mask-border-width]
+      border-solid border-default-theme-sideline border-[length:--mask-border-width] dark:bg-black dark:border-black
       left-0 top-0 w-[--mask-width] h-[80vh]"></div>
     <div class="fixed z-999 bg-default-theme-sideline pointer-events-none animate-default-mask-mr
-      border-solid border-default-theme-sideline border-[length:--mask-border-width]
+      border-solid border-default-theme-sideline border-[length:--mask-border-width] dark:bg-black dark:border-black
       right-0 top-0 w-[--mask-width] h-[80vh]"></div>
     <Header :site-title="siteTitle" :page-title="pageTitle" :nav-items="navItems" :sub-title="subTitle"
-            :description="description" :logo="logoURI"/>
-    <main class="relative md:min-h-40 min-h-[--content-min-h] ml-[--side-width] pt-[--h-margin]
-               pr-[--content-pd-r] pl-[--content-pd-l] md:mt-10 md:pr-0 md:pl-0 md:pt-0 md:block">
+            :description="description" :logo="logoURI" :header-config="headerConfig"/>
+    <main class="relative md:min-h-40 min-h-[--content-min-h] ml-[--side-width] pt-[--h-margin] bg-default-theme-background dark:bg-zinc-900
+               pr-[--content-pd-r] pl-[--content-pd-l] md:mt-10 md:pr-0 md:pl-0 md:pt-0 md:block"
+          style="box-shadow: rgba(0, 0, 0, 0.05) 0 1px 2px 0;">
       <slot></slot>
-      <div class="md:hidden dark:hidden absolute inset-0 m-5 pointer-events-none">
+      <div class="hidden md:hidden dark:hidden absolute inset-0 m-5 pointer-events-none">
         <div class="line-h absolute top-0 inset-x-0 h-[2px] bg-left-top bg-repeat-x"></div>
         <div class="line-v absolute right-0 inset-y-0 w-[2px] bg-left-top bg-repeat-y"></div>
         <div class="line-h absolute bottom-0 inset-x-0 h-[2px] bg-left-top bg-repeat-x"></div>
@@ -40,7 +41,8 @@ import '~/assets/css/default/index.css';
 import 'remixicon/fonts/remixicon.css';
 import Header from "./_partial/Header.vue";
 import Footer from "./_partial/Footer.vue";
-import { NConfigProvider } from 'naive-ui'
+import { useDark } from '@vueuse/core'
+import { NConfigProvider, darkTheme } from 'naive-ui'
 
 const {data: siteConfig} = await useAsyncData("siteConfig", () => API.getSiteInfo())
 
@@ -67,11 +69,16 @@ const props = defineProps({
  * js 文件下使用这个做类型提示
  * @type import('naive-ui').GlobalThemeOverrides
  */
-const themeOverrides = {
+const themeOverrides: import('naive-ui').GlobalThemeOverrides = {
   common: {
-    primaryColor: '#699054'
+    primaryColor: '#699054',
+    primaryColorHover: '#84a476',
+    primaryColorPressed: '#5f834f',
+    primaryColorSuppl: '#a0b894'
   }
 }
+
+const isDark = useDark()
 
 // head externals
 const head = siteConfig.value?.theme_config?.head || {}
@@ -87,8 +94,15 @@ const description = siteConfig.value?.description || ''
 const navItems = siteConfig.value?.theme_config?.nav
 // favicon
 const faviconURI = siteConfig.value?.theme_config?.favicon
-// favicon
+const favicon16URI = siteConfig.value?.theme_config?.favicon16 || faviconURI
+const favicon32URI = siteConfig.value?.theme_config?.favicon32 || faviconURI
+const appleTouchIconURI = siteConfig.value?.theme_config?.appleTouchIcon
+const manifestURI = siteConfig.value?.theme_config?.manifest
+const maskIconURI = siteConfig.value?.theme_config?.maskicon
+// logo
 const logoURI = siteConfig.value?.theme_config?.logo as string || faviconURI as string
+// headerConfig
+const headerConfig = siteConfig.value?.theme_config?.header || {}
 // logo
 // const logo = siteConfig.value?.theme_config?.logo
 // avatar
@@ -100,6 +114,10 @@ const siteAuthor = siteConfig.value?.author || '佚名'
 // 社交链接
 const socialLinks = siteConfig.value?.theme_config?.links as any[]
 
+const curTheme = computed(() => {
+  return isDark.value ? darkTheme : null
+})
+
 useSeoMeta({
   title: props.pageTitle ? `${props.pageTitle} - ${siteTitle}` : siteTitle,
   description: props.pageDescription || siteConfig.value?.description,
@@ -108,7 +126,7 @@ useSeoMeta({
 })
 useHead({
   bodyAttrs: {
-    class: 'heti--serif text-base bg-default-theme-background dark:bg-zinc-900 text-gray-700 dark:text-gray-200 scroll-smooth'
+    class: 'heti--serif text-base text-gray-700 dark:text-gray-200 scroll-smooth'
   },
   link: [
     {rel: "preconnect", href: "https://fonts.googleapis.com"},
@@ -118,9 +136,38 @@ useHead({
       href: "https://fonts.googleapis.com/css2?family=Long+Cang&family=Alegreya+Sans:ital,wght@0,100;0,400;0,700;1,100;1,400;1,700&family=Vollkorn:ital,wght@0,400;0,700;1,400;1,700&family=Noto+Sans+SC:wght@100;300;400;700;900&family=Noto+Serif+SC:wght@200;300;400;700;900&family=Vollkorn:ital,wght@0,400;0,700;1,400;1,700&display=swap"
     },
     {
+      rel: "apple-touch-icon",
+      sizes: "180x180",
+      href: faviconURI
+    },
+    {
       rel: "icon",
       type: "image/x-icon",
       href: faviconURI
+    },
+    {
+      rel: "icon",
+      type: "image/png",
+      sizes: "32x32",
+      href: favicon32URI
+    },
+    {
+      rel: "icon",
+      type: "image/png",
+      sizes: "16x16",
+      href: favicon16URI
+    },
+    {
+      rel: "manifest",
+      href: manifestURI
+    },
+    {
+      rel: "mask-icon",
+      href: maskIconURI
+    },
+    {
+      rel: "theme-color",
+      content: "#699054"
     },
     ...(head.links || [])
   ],
@@ -128,5 +175,12 @@ useHead({
     {src: "https://unpkg.com/heti/umd/heti-addon.min.js"},
     ...(head.scripts || [])
   ]
+})
+
+onMounted(() => {
+  setTimeout(() => {
+    document.body.classList.add('bg-default-theme-sideline')
+    document.body.classList.add('dark:bg-black')
+  }, 500)
 })
 </script>
