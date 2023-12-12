@@ -20,8 +20,8 @@
       right-0 top-0 w-[--mask-width] h-[80vh]"></div>
     <Header :site-title="siteTitle" :page-title="pageTitle" :nav-items="navItems" :sub-title="subTitle"
             :description="description" :logo="logoURI" :header-config="headerConfig"/>
-    <main class="relative md:min-h-40 min-h-[--content-min-h] ml-[--side-width] pt-[--h-margin] bg-default-theme-background dark:bg-zinc-900
-               pr-[--content-pd-r] pl-[--content-pd-l] md:mt-12 md:pr-0 md:pl-0 md:pt-0 md:block"
+    <main class="relative md:min-h-40 min-h-[--content-min-h] ml-[--side-width] bg-default-theme-background dark:bg-zinc-900
+               md:mt-12 md:pr-0 md:pl-0 md:pt-0 md:block p-2"
           style="box-shadow: rgba(0, 0, 0, 0.05) 0 1px 2px 0;">
       <slot></slot>
       <div class="hidden md:hidden dark:hidden absolute inset-0 m-5 pointer-events-none">

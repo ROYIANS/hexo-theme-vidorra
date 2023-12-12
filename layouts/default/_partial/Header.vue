@@ -1,8 +1,7 @@
 <template>
   <!--  默认左侧侧边栏-->
   <header class="heti--sans md:hidden pt-2 pb-16 px-[--h-margin] h-full w-[--side-width] fixed overflow-auto
-                 bg-white dark:bg-zinc-950 text-gray-700 dark:text-gray-200 text-sm select-none
-                 border-r border-dashed border-gray-200 dark:border-r-zinc-800">
+                 bg-white dark:bg-zinc-950 text-gray-700 dark:text-gray-200 text-sm select-none">
     <div class="animate-default-left-in">
       <div class="w-full mx-0 my-8">
         <router-link to="/">
@@ -91,7 +90,7 @@
   </div>
   <!--  左侧侧边栏功能按钮-->
   <nav class="md:hidden bg-white bg-curve-pattern dark:bg-zinc-950 text-gray-700 dark:text-gray-200 -bottom-px select-none
-              my-[--mask-width] p-2 h-16 w-[--side-width] fixed border-r border-dashed border-gray-200 dark:border-r-zinc-800">
+              my-[--mask-width] p-2 h-16 w-[--side-width] fixed">
     <ul class="w-full h-full flex gap-4 items-center justify-center">
       <li class="blog-button-sm" title="搜索" @click="button.trigger">
         <i class="ri-search-2-line"></i>

@@ -154,6 +154,14 @@ export default {
                         translate: 'none',
                         opacity: 1
                     }
+                },
+                'default-fade-out': {
+                    '0%': {
+                        opacity: 1
+                    },
+                    '100%': {
+                        opacity: 0
+                    }
                 }
             },
             animation: {
@@ -161,7 +169,8 @@ export default {
                 'default-mask-mb': 'default-mask-mb calc(4 * var(--duration)) var(--curve) both',
                 'default-mask-ml': 'default-mask-ml calc(4 * var(--duration)) var(--curve) both',
                 'default-mask-mr': 'default-mask-mr calc(4 * var(--duration)) var(--curve) both',
-                'default-left-in': 'default-left-in calc(2 * var(--duration)) var(--curve) both'
+                'default-left-in': 'default-left-in calc(2 * var(--duration)) var(--curve) both',
+                'default-fade-out': 'default-fade-out calc(2 * var(--duration)) var(--curve) both'
             }
         },
     },

@@ -1,4 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import Components from 'unplugin-vue-components/vite';
+import { NaiveUiResolver } from 'unplugin-vue-components/resolvers';
+
 export default defineNuxtConfig({
   app: {
     head: {
@@ -10,7 +13,7 @@ export default defineNuxtConfig({
   css: [
     '~/assets/css/main.css'
   ],
-  modules: ["@pinia/nuxt", "@nuxtjs/i18n"],
+  modules: ["@pinia/nuxt", "@nuxtjs/i18n", "dayjs-nuxt"],
   build: {
     transpile: process.env.NODE_ENV === 'production'
       ? [
@@ -27,7 +30,13 @@ export default defineNuxtConfig({
         process.env.NODE_ENV === 'development'
           ? ['naive-ui', 'vueuc', 'date-fns-tz/formatInTimeZone']
           : []
-    }
+    },
+    plugins: [
+      Components({
+        dts: true,
+        resolvers: [NaiveUiResolver()], // Automatically register all components in the `components` directory
+      })
+    ]
   },
   postcss: {
     plugins: {
@@ -37,5 +46,8 @@ export default defineNuxtConfig({
   },
   i18n: {
     vueI18n: '~/locales/i18n.config.js'
+  },
+  dayjs: {
+    plugins: ['relativeTime', 'utc', 'timezone', 'isLeapYear']
   }
 })

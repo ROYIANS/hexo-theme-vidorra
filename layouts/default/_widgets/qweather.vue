@@ -1,0 +1,49 @@
+<template>
+  <div id="he-plugin-standard"></div>
+</template>
+
+<script setup>
+import API from "~/api";
+
+const {data: siteInfo} = await useAsyncData("siteInfo", () => API.getSiteInfo())
+
+onMounted(() => {
+  window.WIDGET = {
+    "CONFIG": {
+      "layout": "2",
+      "width": "",
+      "height": "",
+      "background": "5",
+      "dataColor": "transparent",
+      "borderRadius": "8",
+      "key": siteInfo.value?.theme_config?.secrets.qweather_api_key
+    }
+  }
+  const c = document.createElement('link')
+  c.rel = 'stylesheet'
+  c.href = 'https://widget.qweather.net/standard/static/css/he-standard.css?v=1.4.0'
+  const s = document.createElement('script')
+  s.src = 'https://widget.qweather.net/standard/static/js/he-standard.js?v=1.4.0'
+  const sn = document.getElementsByTagName('script')[0]
+  sn.parentNode?.insertBefore(c, sn)
+  sn.parentNode?.insertBefore(s, sn)
+})
+</script>
+
+<style>
+#he-plugin-standard {
+  width: 100%!important;
+}
+
+.dark .wv-n-h-now, .dark .wv-f-forecast a, .dark .wv-lt-location > span {
+  color: #fff!important;
+}
+
+.wv-n-h-now, .wv-f-forecast a, .wv-lt-location > span {
+  color: #212121!important;
+}
+
+.wv-lt-refresh, .wv-lt-location > a {
+  display: none!important;
+}
+</style>
