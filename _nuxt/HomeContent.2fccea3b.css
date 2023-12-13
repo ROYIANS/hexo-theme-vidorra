@@ -1,0 +1,1 @@
+.custom-dots{display:flex;margin:0;padding:0;position:absolute;right:20px;top:20px}.custom-dots li{background-color:#fff6;border-radius:4px;cursor:pointer;display:inline-block;height:4px;margin:0 3px;transition:width .3s,background-color .3s cubic-bezier(.4,0,.2,1);width:12px}.custom-dots li.is-active{background:#fff;width:40px}

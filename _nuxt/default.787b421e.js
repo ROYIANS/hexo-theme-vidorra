@@ -1,0 +1,1 @@
+import{_ as t}from"./_plugin-vue_export-helper.c27b6911.js";import{g as o,o as s,e}from"./entry.095d646e.js";const c={},n={class:"w-full h-full text-center text-2xl"},_=e("p",null,"您已经成功安装了hexo主题dreamland，但是没有设置子主题！请在主题配置文件中设置子主题！",-1),l=e("p",null,"默认子主题为 book",-1),r=[_,l];function a(d,f){return s(),o("div",n,r)}const h=t(c,[["render",a]]);export{h as default};

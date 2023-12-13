@@ -1,0 +1,1 @@
+import{d as _,u as c,w as u,a as i,o as m,c as r,A as f,_ as p}from"./entry.095d646e.js";const x=_({__name:"404",async setup(l){let t,e;c();const{data:o}=([t,e]=u(()=>i("siteConfig",()=>f.getSiteInfo())),t=await t,e(),t),{theme_config:n}=o.value,a=`${n.theme}-not-found`;return(d,g)=>{const s=p;return m(),r(s,{name:a})}}});export{x as default};
