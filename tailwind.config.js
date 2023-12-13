@@ -31,7 +31,7 @@ export default {
                     dark: '#161616'
                 },
                 'main-text': {
-                    DEFAULT: '#444444',
+                    DEFAULT: '#212121',
                     dark: '#ffffff'
                 },
                 'border-color': {
@@ -181,6 +181,7 @@ export default {
         },
     },
     plugins: [
+        require('tailwindcss-3d'),
         require('@tailwindcss/typography')({
             // all these options default to the values specified here
             ellipsis: true,         // whether to generate ellipsis utilities

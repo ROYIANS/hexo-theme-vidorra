@@ -1,7 +1,7 @@
 <template>
   <div class="w-full h-full heti--serif grid grid-cols-2">
-    <div class="font-bold text-2xl justify-self-start">{{ displayYear }}/{{ displayMonth }}</div>
-    <div class="font-bold text-2xl justify-self-end">
+    <div class="font-black text-xl justify-self-start">{{ displayYear }}/{{ displayMonth }}</div>
+    <div class="font-bold text-xl justify-self-end">
       <n-button-group size="tiny">
         <n-button quaternary size="tiny" @click="decreaseMonth">
           <template #icon>
@@ -20,22 +20,26 @@
         </n-button>
       </n-button-group>
     </div>
-    <ul class="grid grid-cols-7 gap-2 select-none col-span-2">
-      <li v-for="i in weeks" :key="i" class="flex items-center justify-center text-white text-sm">
+    <ul class="grid grid-cols-7 gap-2 select-none col-span-2 pt-2">
+      <li v-for="i in weeks" :key="i" class="flex items-center justify-center text-white text-xs font-bold">
         <div class="bg-default-theme-primary-600 dark:bg-default-theme-primary-dark-300 rounded-full w-6 h-6 items-center justify-center flex">
           <span>{{ i }}</span>
         </div>
       </li>
-      <li v-for="i in 42" :key="i" class="flex items-center justify-center">
+      <li v-for="i in 42" :key="i" class="flex items-center justify-center text-xs font-bold">
         <div v-if="i < startIndex" class="invisible w-6 h-6"></div>
         <div v-if="i>= startIndex && i < endIndex" class="relative bg-default-theme-primary-100 dark:bg-default-theme-primary-dark-700 cursor-pointer rounded-full w-6 h-6 items-center justify-center flex">
           <img
               v-if="curMonthMoods[i - startIndex]"
               :src="curMonthMoods[i - startIndex]?.url"
               :alt="curMonthMoods[i - startIndex]?.mood"
-              class="w-full h-full rounded-full absolute inset-0 hover:animate-default-fade-out"
+              class="w-full h-full rounded-full absolute inset-0 hover:animate-default-fade-out object-cover object-center"
           />
           <span>{{ i - startIndex + 1 }}</span>
+          <div
+              v-if="+displayYear === +currentYear && +displayMonth === +currentMonth && +(i - startIndex + 1) === +currentDate"
+              class="absolute w-2 h-2 rounded-full right-0 bottom-0 bg-orange-600"
+          ></div>
         </div>
       </li>
     </ul>
@@ -49,6 +53,7 @@ const dayjs = useDayjs()
 
 const currentMonth = dayjs().format('MM')
 const currentYear = dayjs().format('YYYY')
+const currentDate = dayjs().format('DD')
 
 const displayMonth = ref(currentMonth)
 const displayYear = ref(currentYear)
@@ -58,14 +63,12 @@ const weeks = ['日', '一', '二', '三', '四', '五', '六']
 const startIndex = ref(0)
 const endIndex = ref(0)
 
-const curMonthMoods = Object.keys(moods).map(async item => {
+const curMonthMoods = Object.keys(moods).map(item => {
   return {
     mood: item,
-    url: await moods[item]
+    url: moods[item]
   }
 })
-
-console.log(curMonthMoods)
 
 const calculate = () => {
   startIndex.value = dayjs(`${displayYear.value}-${displayMonth.value}-01`).day() + 1

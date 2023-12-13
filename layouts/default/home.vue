@@ -29,14 +29,13 @@
     <div class="block dark:hidden absolute w-full h-full inset-0 overflow-hidden pointer-events-none">
       <div class="grid-bg absolute inset-0 w-full h-full"></div>
     </div>
-    <div class="flex flex-wrap items-stretch lg:block p-5 gap-4">
+    <div class="flex flex-wrap items-stretch xl:block p-5 gap-4 md:p-2">
       <section class="order-1 grow shrink basis-2/3 h-auto relative">
-        <div class="bg-white dark:bg-zinc-900 dark:bg-opacity-80 h-80 rounded-sm border relative dark:border-zinc-800 bg-opacity-80">
-          <div class="h-14 absolute top-0 inset-x-0 bg-gradient-to-t from-white dark:from-zinc-900 w-full z-99"></div>
-          <div class="h-14"></div>
+        <div class="bg-white dark:bg-zinc-900 dark:bg-opacity-80 rounded-sm border relative dark:border-zinc-800 bg-opacity-80">
+          <HomeContent />
         </div>
       </section>
-      <section class="order-2 grow shrink basis-1/12 relative lg:mt-4 overflow-hidden transition-all">
+      <section class="order-2 grow shrink basis-1/12 relative xl:mt-4 overflow-hidden transition-all">
         <div class="bg-white dark:bg-zinc-900 dark:bg-opacity-80 rounded-sm border relative dark:border-zinc-800 bg-opacity-80 pb-5">
           <div class="h-14 absolute top-0 inset-x-0 z-1 pointer-events-none bg-gradient-to-t from-white dark:from-zinc-900 w-full z-99"></div>
           <div class="h-14 absolute top-0 inset-x-0 z-0 pointer-events-none bg-gradient-to-r from-default-theme-primary-200 via-60% via-yellow-100 to-blue-100
@@ -51,8 +50,8 @@
               {{ hitokoto }}
             </div>
             <n-divider class="!my-2" />
-            <div class="px-4 grid lg:grid-cols-2 md:grid-cols-1">
-              <MoodCard class="dark:border-zinc-800 border-b md:border-b md:border-r-0 lg:border-r lg:border-b-0"/>
+            <div class="px-4 grid xl:grid-cols-2 md:grid-cols-1">
+              <MoodCard class="dark:border-zinc-800 border-b md:border-b md:border-r-0 xl:border-r xl:border-b-0"/>
               <QWeather />
             </div>
           </div>
@@ -66,8 +65,9 @@
 import DefaultLayout from './default.vue'
 import API from "~/api";
 import { getHitokoto, getIpCity } from '~/service/backend/externelApiService'
-import QWeather from "~/layouts/default/_widgets/qweather.vue";
-import MoodCard from "~/layouts/default/_widgets/moodCard.vue";
+import QWeather from "./_widgets/QWeather.vue";
+import MoodCard from "./_widgets/MoodCard.vue";
+import HomeContent from "./_partial/HomeContent.vue";
 
 const {data: categories} = await useAsyncData("categories", () => API.getCategories())
 

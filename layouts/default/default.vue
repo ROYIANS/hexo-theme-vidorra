@@ -129,14 +129,14 @@ useSeoMeta({
 })
 useHead({
   bodyAttrs: {
-    class: 'heti--sans text-base text-gray-700 dark:text-gray-200'
+    class: 'heti--sans text-base text-main-text dark:text-gray-200'
   },
   link: [
     {rel: "preconnect", href: "https://fonts.googleapis.com"},
     {rel: "preconnect", href: "https://fonts.gstatic.com", crossorigin: "anonymous"},
     {
       rel: "stylesheet",
-      href: "https://fonts.googleapis.com/css2?family=Long+Cang&family=Alegreya+Sans:ital,wght@0,100;0,400;0,700;1,100;1,400;1,700&family=Vollkorn:ital,wght@0,400;0,700;1,400;1,700&family=Noto+Sans+SC:wght@100;300;400;700;900&family=Noto+Serif+SC:wght@200;300;400;700;900&family=Vollkorn:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      href: "https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,200;0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;0,6..72,800;1,6..72,200;1,6..72,300;1,6..72,400;1,6..72,500;1,6..72,600;1,6..72,700;1,6..72,800&family=Noto+Sans+SC:wght@100;200;300;400;500;600;700;800;900&family=Noto+Serif+SC:wght@200;300;400;500;600;700;900&display=swap"
     },
     {
       rel: "apple-touch-icon",

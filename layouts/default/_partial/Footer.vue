@@ -17,7 +17,7 @@
       <span>Powered by</span>
       <a href="https://hexo.io/" target="_blank" rel="noopener noreferrer">Hexo</a>
       <span>&</span>
-      <a href="https://github.com/ROYIANS/hexo-theme-dreamlandbook" target="_blank"
+      <a href="https://github.com/ROYIANS/hexo-theme-dreamland" target="_blank"
          rel="noopener noreferrer">Dreamland</a>
     </div>
 

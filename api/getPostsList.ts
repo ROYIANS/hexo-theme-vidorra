@@ -3,6 +3,6 @@ import posts from "~/data/posts";
 
 export default function () : Promise<Post[]> {
   return new Promise(resolve => {
-    resolve(posts)
+    resolve((<Post[]><unknown>posts))
   })
 }

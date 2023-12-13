@@ -43,7 +43,13 @@ onMounted(() => {
   color: #212121!important;
 }
 
-.wv-lt-refresh, .wv-lt-location > a {
+.wv-lt-row, .wv-lt-col-7, .wv-lt-location {
+  text-align: center!important;
+  width: 100%!important;
+}
+
+.wv-lt-refresh, .wv-lt-location > a, .wv-top-backdrop {
   display: none!important;
+  pointer-events: none!important;
 }
 </style>
