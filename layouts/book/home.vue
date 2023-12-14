@@ -58,7 +58,7 @@
 <script setup>
 import DefaultLayout from './default.vue'
 import min2read from "~/utils/min2read.js";
-import useHexoData from "~/hooks/useHexoData.js";
+import useHexoData from "~/hooks/useHexoData.ts";
 const hexo = await useHexoData()
 
 const siteConfig = hexo.getSiteConfig()

@@ -37,7 +37,7 @@ class HexoData {
   }
 
   getThemeConfig() {
-    return this.siteConfig?.theme_config
+    return this.siteConfig!.theme_config
   }
 }
 

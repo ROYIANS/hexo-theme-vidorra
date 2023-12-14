@@ -36,6 +36,7 @@
       <i class="ri-skip-up-line" />
     </n-back-top>
   </n-config-provider>
+  <MagicCursor />
 </template>
 
 <script setup lang="ts">
@@ -44,14 +45,13 @@ import 'remixicon/fonts/remixicon.css';
 import Header from "./_partial/Header.vue";
 import Footer from "./_partial/Footer.vue";
 import useLocalCache from "~/hooks/useLocalCache";
-import { useDark } from '@vueuse/core'
-import { NConfigProvider, NBackTop, darkTheme } from 'naive-ui'
+import { darkTheme } from 'naive-ui'
 import useHexoData from "~/hooks/useHexoData";
 
 const hexo = await useHexoData()
 
-const siteConfig = hexo.getSiteConfig()
-const themeConfig = hexo.getThemeConfig()
+const siteConfig = hexo.getSiteConfig()!
+const themeConfig = hexo.getThemeConfig()!
 
 
 const props = defineProps({
@@ -86,50 +86,50 @@ const themeOverrides: import('naive-ui').GlobalThemeOverrides = {
   }
 }
 
-const isDark = ref(true)
+const isDark = ref(false)
 const curTheme = computed(() => {
   return isDark.value ? darkTheme : null
 })
 
 // head externals
-const head = themeConfig?.head || {}
+const head = themeConfig.head
 
 // header props
 // 网站标题
-const siteTitle = siteConfig?.title || 'Untitled'
+const siteTitle = siteConfig.title || 'Untitled'
 // 网站副标题
-const subTitle = siteConfig?.subtitle || ''
+const subTitle = siteConfig.subtitle || ''
 // 网站描述
-const description = siteConfig?.description || ''
+const description = siteConfig.description || ''
 // 导航栏项目
-const navItems = themeConfig?.nav
+const navItems = themeConfig.nav
 // favicon
-const faviconURI = themeConfig?.favicon
-const favicon16URI = themeConfig?.favicon16 || faviconURI
-const favicon32URI = themeConfig?.favicon32 || faviconURI
-const appleTouchIconURI = themeConfig?.appleTouchIcon
-const manifestURI = themeConfig?.manifest
-const maskIconURI = themeConfig?.maskicon
+const faviconURI = themeConfig.favicon
+const favicon16URI = themeConfig.favicon16 || faviconURI
+const favicon32URI = themeConfig.favicon32 || faviconURI
+const appleTouchIconURI = themeConfig.appleTouchIcon
+const manifestURI = themeConfig.manifest
+const maskIconURI = themeConfig.maskicon
 // logo
-const logoURI = themeConfig?.logo as string || faviconURI as string
+const logoURI = themeConfig.logo as string || faviconURI as string
 // headerConfig
-const headerConfig = themeConfig?.header || {}
+const headerConfig = themeConfig.header || {}
 // logo
-// const logo = themeConfig?.logo
+// const logo = themeConfig.logo
 // avatar
-// const avatar = themeConfig?.avatar
+// const avatar = themeConfig.avatar
 
 // footer props
 // 网站拥有者
-const siteAuthor = siteConfig?.author || '佚名'
+const siteAuthor = siteConfig.author || '佚名'
 // 社交链接
-const socialLinks = themeConfig?.links as any[]
+const socialLinks = themeConfig.links as any[]
 
 useSeoMeta({
   title: props.pageTitle ? `${props.pageTitle} - ${siteTitle}` : siteTitle,
-  description: props.pageDescription || siteConfig?.description,
-  keywords: props.pageKeywords || siteConfig?.keywords,
-  author: props.pageAuthor || siteConfig?.author
+  description: props.pageDescription || siteConfig.description,
+  keywords: props.pageKeywords || siteConfig.keywords,
+  author: props.pageAuthor || siteConfig.author
 })
 useHead({
   bodyAttrs: {

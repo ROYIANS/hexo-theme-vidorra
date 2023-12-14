@@ -27,6 +27,13 @@ export interface ThemeConfig extends Record<string, unknown> {
       }
     ]
   },
+  me: {
+    nickname: string,
+    description: string,
+    birthYear: string,
+    location: string
+    avatar: string
+  }
   pagination: {
     per_page: number,
     order_by: string
