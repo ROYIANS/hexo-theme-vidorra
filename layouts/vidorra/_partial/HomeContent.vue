@@ -95,19 +95,22 @@
 </template>
 
 <script setup lang="ts">
-import API from "~/api";
+import useHexoData from "~/hooks/useHexoData";
 
-const {data: siteInfo} = await useAsyncData("siteInfo", () => API.getSiteInfo())
-const {data: postsList} = await useAsyncData("postsList", () => API.getPostsList())
+const hexo = await useHexoData()
+
+const siteInfo = hexo.getSiteConfig()
+const postsList = hexo.getPostList()
+const themeConfig = hexo.getThemeConfig()
 
 const dayjs = useDayjs()
 
-const announcement = siteInfo.value?.theme_config.announcement
-const stickyThread = siteInfo.value?.theme_config.home.stickyThread || []
+const announcement = themeConfig?.announcement
+const stickyThread = themeConfig?.home.stickyThread || []
 
-const stickyPosts = postsList.value?.filter(item => item.sticky) || []
+const stickyPosts = postsList?.filter(item => item.sticky) || []
 
-postsList.value?.sort((a, b) => {
+postsList?.sort((a, b) => {
   const aDate = a.date
   const bDate = b.date
   return dayjs(aDate).isAfter(dayjs(bDate)) ? -1 : 1
@@ -117,9 +120,11 @@ const stickyThreadPosts: any[] = []
 
 for (let thread of stickyThread) {
   const id = thread.uniqueId
-  const {data: findPost} = await useAsyncData("post", () => API.getPostByID(id))
+  const findPost = postsList?.find(item => {
+    return item.uniqueId === id;
+  }) || {}
   stickyThreadPosts.push({
-    ...findPost.value,
+    ...findPost,
     ...thread
   })
 }
@@ -127,10 +132,10 @@ for (let thread of stickyThread) {
 let totalStickyPosts = ref([...stickyThreadPosts, ...stickyPosts])
 
 if (totalStickyPosts.value.length === 0) {
-  totalStickyPosts.value = postsList.value?.slice(0, 3) || []
+  totalStickyPosts.value = postsList?.slice(0, 3) || []
 }
 
-const topFivePosts = postsList.value?.slice(0, 5) || []
+const topFivePosts = postsList?.slice(0, 5) || []
 </script>
 
 <style>

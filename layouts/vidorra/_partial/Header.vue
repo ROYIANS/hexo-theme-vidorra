@@ -98,7 +98,7 @@
       <li class="blog-button-sm" title="language" @click="button.trigger">
         <i class="ri-translate-2"></i>
       </li>
-      <li class="blog-button-sm" title="亮色/暗色模式" @click="toggleDark()">
+      <li class="blog-button-sm" title="亮色/暗色模式" @click="toggleDarkMode()">
         <i class="ri-contrast-line"></i>
       </li>
       <li class="blog-button-sm" title="音乐盒子" @click="button.trigger">
@@ -143,7 +143,7 @@
             <li class="blog-button-lg" title="language" @click="button.trigger">
               <i class="ri-translate-2"></i>
             </li>
-            <li class="blog-button-lg" title="亮色/暗色模式" @click="toggleDark()">
+            <li class="blog-button-lg" title="亮色/暗色模式" @click="toggleDarkMode()">
               <i class="ri-contrast-line"></i>
             </li>
             <li class="blog-button-lg" title="音乐盒子" @click="button.trigger">
@@ -199,8 +199,6 @@
 </template>
 
 <script setup lang="ts">
-import { useDark, useToggle } from '@vueuse/core'
-import useLocalCache from "~/hooks/useLocalCache";
 import userDefaultImage from '~/assets/image/default/user-avatar-1.jpg'
 
 const props = defineProps({
@@ -238,16 +236,7 @@ const props = defineProps({
 
 const sidebarRef = ref()
 const maskRef = ref()
-
-const isDark = useDark()
-const { getCache, setCache } = useLocalCache()
-isDark.value = getCache('darkMode')
-const toggleDarkMode = useToggle(isDark)
-
-const toggleDark = () => {
-  toggleDarkMode()
-  setCache('darkMode', isDark.value)
-}
+const toggleDarkMode = inject('toggleDarkMode')
 
 const toggleIcon = ref('ri-menu-3-line')
 

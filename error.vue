@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import API from '~/api'
 import {NDialogProvider, NGlobalStyle, NLoadingBarProvider, NMessageProvider, NNotificationProvider} from "naive-ui";
+import useHexoData from "~/hooks/useHexoData";
 
 const props = defineProps({
   error: {
@@ -23,9 +23,9 @@ const statusCodeToLayoutPage = (code: number) => {
 }
 
 const route = useRoute()
-const {data: siteConfig} = await useAsyncData("siteConfig", () => API.getSiteInfo())
-const {theme_config: themeConfig} = siteConfig.value as Record<string, any>
-const layout = `${themeConfig.theme}-${statusCodeToLayoutPage(props.error.statusCode)}`
+const hexo = await useHexoData()
+const themeConfig = hexo.getThemeConfig()
+const layout = `${themeConfig?.theme || 'vidorra'}-${statusCodeToLayoutPage(props.error.statusCode)}`
 </script>
 
 <template>

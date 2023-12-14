@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import API from '~/api'
+import useHexoData from "~/hooks/useHexoData";
+
+const hexo = await useHexoData()
 const route = useRoute()
-const { data: siteConfig } = await useAsyncData("siteConfig", () => API.getSiteInfo())
-const { theme_config: themeConfig } = siteConfig.value as Record<string, any>
-const layout = `${themeConfig.theme}-home`
+const themeConfig = hexo.getThemeConfig()
+const layout = `${themeConfig?.theme || 'vidorra'}-home`
 </script>
 
 <template>

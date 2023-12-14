@@ -39,7 +39,6 @@
 </template>
 
 <script setup lang="ts">
-import API from "~/api";
 import '~/assets/css/default/index.css';
 import 'remixicon/fonts/remixicon.css';
 import Header from "./_partial/Header.vue";
@@ -47,8 +46,13 @@ import Footer from "./_partial/Footer.vue";
 import useLocalCache from "~/hooks/useLocalCache";
 import { useDark } from '@vueuse/core'
 import { NConfigProvider, NBackTop, darkTheme } from 'naive-ui'
+import useHexoData from "~/hooks/useHexoData";
 
-const {data: siteConfig} = await useAsyncData("siteConfig", () => API.getSiteInfo())
+const hexo = await useHexoData()
+
+const siteConfig = hexo.getSiteConfig()
+const themeConfig = hexo.getThemeConfig()
+
 
 const props = defineProps({
   pageTitle: {
@@ -82,50 +86,50 @@ const themeOverrides: import('naive-ui').GlobalThemeOverrides = {
   }
 }
 
-const { getCache } = useLocalCache()
-const darkMode = getCache('darkMode')
-const curTheme = ref(darkMode ? darkTheme : null)
-const isDark = useDark()
+const isDark = ref(true)
+const curTheme = computed(() => {
+  return isDark.value ? darkTheme : null
+})
 
 // head externals
-const head = siteConfig.value?.theme_config?.head || {}
+const head = themeConfig?.head || {}
 
 // header props
 // 网站标题
-const siteTitle = siteConfig.value?.title || 'Untitled'
+const siteTitle = siteConfig?.title || 'Untitled'
 // 网站副标题
-const subTitle = siteConfig.value?.subtitle || ''
+const subTitle = siteConfig?.subtitle || ''
 // 网站描述
-const description = siteConfig.value?.description || ''
+const description = siteConfig?.description || ''
 // 导航栏项目
-const navItems = siteConfig.value?.theme_config?.nav
+const navItems = themeConfig?.nav
 // favicon
-const faviconURI = siteConfig.value?.theme_config?.favicon
-const favicon16URI = siteConfig.value?.theme_config?.favicon16 || faviconURI
-const favicon32URI = siteConfig.value?.theme_config?.favicon32 || faviconURI
-const appleTouchIconURI = siteConfig.value?.theme_config?.appleTouchIcon
-const manifestURI = siteConfig.value?.theme_config?.manifest
-const maskIconURI = siteConfig.value?.theme_config?.maskicon
+const faviconURI = themeConfig?.favicon
+const favicon16URI = themeConfig?.favicon16 || faviconURI
+const favicon32URI = themeConfig?.favicon32 || faviconURI
+const appleTouchIconURI = themeConfig?.appleTouchIcon
+const manifestURI = themeConfig?.manifest
+const maskIconURI = themeConfig?.maskicon
 // logo
-const logoURI = siteConfig.value?.theme_config?.logo as string || faviconURI as string
+const logoURI = themeConfig?.logo as string || faviconURI as string
 // headerConfig
-const headerConfig = siteConfig.value?.theme_config?.header || {}
+const headerConfig = themeConfig?.header || {}
 // logo
-// const logo = siteConfig.value?.theme_config?.logo
+// const logo = themeConfig?.logo
 // avatar
-// const avatar = siteConfig.value?.theme_config?.avatar
+// const avatar = themeConfig?.avatar
 
 // footer props
 // 网站拥有者
-const siteAuthor = siteConfig.value?.author || '佚名'
+const siteAuthor = siteConfig?.author || '佚名'
 // 社交链接
-const socialLinks = siteConfig.value?.theme_config?.links as any[]
+const socialLinks = themeConfig?.links as any[]
 
 useSeoMeta({
   title: props.pageTitle ? `${props.pageTitle} - ${siteTitle}` : siteTitle,
-  description: props.pageDescription || siteConfig.value?.description,
-  keywords: props.pageKeywords || siteConfig.value?.keywords,
-  author: props.pageAuthor || siteConfig.value?.author
+  description: props.pageDescription || siteConfig?.description,
+  keywords: props.pageKeywords || siteConfig?.keywords,
+  author: props.pageAuthor || siteConfig?.author
 })
 useHead({
   bodyAttrs: {
@@ -187,9 +191,23 @@ onMounted(() => {
   }, 500)
 })
 
-watch(isDark, (value) => {
-  curTheme.value = value ? darkTheme : null
-}, {
-  immediate: true
+onBeforeMount(() => {
+  toggleDarkMode(true)
 })
+
+const toggleDarkMode = (notToggle = false) => {
+  const { getCache, setCache } = useLocalCache()
+  const isDarkMode = getCache('darkMode')
+  console.log('isDark', isDarkMode)
+  const finalDark = notToggle ? isDarkMode : !isDarkMode
+  setCache('darkMode', finalDark)
+  isDark.value = finalDark
+  if (finalDark) {
+    document.documentElement.classList.add('dark')
+  } else {
+    document.documentElement.classList.remove('dark')
+  }
+}
+
+provide('toggleDarkMode', toggleDarkMode)
 </script>

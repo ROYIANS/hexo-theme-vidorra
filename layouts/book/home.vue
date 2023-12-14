@@ -56,17 +56,18 @@
 </template>
 
 <script setup>
-import API from "~/api";
 import DefaultLayout from './default.vue'
 import min2read from "~/utils/min2read.js";
+import useHexoData from "~/hooks/useHexoData.js";
+const hexo = await useHexoData()
 
-const {data: siteConfig} = await useAsyncData("siteConfig", () => API.getSiteInfo())
-const {data: postList} = await useAsyncData("postList", () => API.getPostsList())
+const siteConfig = hexo.getSiteConfig()
+const postList = hexo.getPostList()
 
 // 网站标题
-const siteTitle = siteConfig.value?.title || 'Untitled'
+const siteTitle = siteConfig?.title || 'Untitled'
 // 网站副标题
-const subTitle = siteConfig.value?.subtitle || ''
+const subTitle = siteConfig?.subtitle || ''
 // 网站作者
-const siteAuthor = siteConfig.value?.author || ''
+const siteAuthor = siteConfig?.author || ''
 </script>

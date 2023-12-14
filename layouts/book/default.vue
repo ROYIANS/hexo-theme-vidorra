@@ -8,15 +8,17 @@
 </template>
 
 <script setup lang="ts">
-import API from "~/api";
 import '~/assets/css/book/index.css'
 import "remixicon/fonts/remixicon.css"
 import Header from "./_partial/Header.vue";
 import Footer from "./_partial/Footer.vue";
 import FloatToolbar from "~/components/FloatToolbar/index.vue";
 import grainColor from "~/utils/grainColor";
+import useHexoData from "~/hooks/useHexoData";
 
-const {data: siteConfig} = await useAsyncData("siteConfig", () => API.getSiteInfo())
+const hexo = await useHexoData()
+const siteConfig = hexo.getSiteConfig()
+const themeConfig = hexo.getThemeConfig()
 
 const props = defineProps({
   pageTitle: {
@@ -38,31 +40,31 @@ const props = defineProps({
 })
 
 // head externals
-const head = siteConfig.value?.theme_config?.head || {}
+const head = themeConfig?.head || {}
 
 // header props
 // 网站标题
-const siteTitle = siteConfig.value?.title || 'Untitled'
+const siteTitle = siteConfig?.title || 'Untitled'
 // 导航栏项目
-const navItems = siteConfig.value?.theme_config?.nav
+const navItems = themeConfig?.nav
 // favicon
-const faviconURI = siteConfig.value?.theme_config?.favicon
+const faviconURI = themeConfig?.favicon
 // logo
-// const logo = siteConfig.value?.theme_config?.logo
+// const logo = themeConfig?.logo
 // avatar
-// const avatar = siteConfig.value?.theme_config?.avatar
+// const avatar = themeConfig?.avatar
 
 // footer props
 // 网站拥有者
-const siteAuthor = siteConfig.value?.author || '佚名'
+const siteAuthor = siteConfig?.author || '佚名'
 // 社交链接
-const socialLinks = siteConfig.value?.theme_config?.links as any[]
+const socialLinks = themeConfig?.links as any[]
 
 useSeoMeta({
   title: props.pageTitle ? `${props.pageTitle} - ${siteTitle}` : siteTitle,
-  description: props.pageDescription || siteConfig.value?.description,
-  keywords: props.pageKeywords || siteConfig.value?.keywords,
-  author: props.pageAuthor || siteConfig.value?.author
+  description: props.pageDescription || siteConfig?.description,
+  keywords: props.pageKeywords || siteConfig?.keywords,
+  author: props.pageAuthor || siteConfig?.author
 })
 useHead({
   bodyAttrs: {

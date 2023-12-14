@@ -1,11 +1,5 @@
-import getPostByID from "~/api/getPostByID";
-import getPostsList from "~/api/getPostsList";
-import getSiteInfo from "~/api/getSiteInfo";
-import getCategories from "~/api/getCategories";
+import hexo from "~/api/hexo"
 
 export default {
-    getPostByID,
-    getPostsList,
-    getSiteInfo,
-    getCategories
+    hexo
 }

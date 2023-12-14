@@ -63,13 +63,10 @@
 
 <script setup lang="ts">
 import DefaultLayout from './default.vue'
-import API from "~/api";
 import { getHitokoto, getIpCity } from '~/service/backend/externelApiService'
 import QWeather from "./_widgets/QWeather.vue";
 import MoodCard from "./_widgets/MoodCard.vue";
 import HomeContent from "./_partial/HomeContent.vue";
-
-const {data: categories} = await useAsyncData("categories", () => API.getCategories())
 
 const dayjs = useDayjs()
 

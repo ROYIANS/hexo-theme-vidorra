@@ -3,9 +3,11 @@
 </template>
 
 <script setup>
-import API from "~/api";
+import useHexoData from "~/hooks/useHexoData";
 
-const {data: siteInfo} = await useAsyncData("siteInfo", () => API.getSiteInfo())
+const hexo = await useHexoData()
+
+const themeConfig = hexo.getThemeConfig()
 
 onMounted(() => {
   window.WIDGET = {
@@ -16,7 +18,7 @@ onMounted(() => {
       "background": "5",
       "dataColor": "transparent",
       "borderRadius": "8",
-      "key": siteInfo.value?.theme_config?.secrets.qweather_api_key
+      "key": themeConfig?.secrets.qweather_api_key
     }
   }
   const c = document.createElement('link')
