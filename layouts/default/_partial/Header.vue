@@ -200,7 +200,7 @@
 
 <script setup lang="ts">
 import { useDark, useToggle } from '@vueuse/core'
-import {NButton, NInput, NAvatar} from "naive-ui";
+import useLocalCache from "~/hooks/useLocalCache";
 import userDefaultImage from '~/assets/image/default/user-avatar-1.jpg'
 
 const props = defineProps({
@@ -240,7 +240,14 @@ const sidebarRef = ref()
 const maskRef = ref()
 
 const isDark = useDark()
-const toggleDark = useToggle(isDark)
+const { getCache, setCache } = useLocalCache()
+isDark.value = getCache('darkMode')
+const toggleDarkMode = useToggle(isDark)
+
+const toggleDark = () => {
+  toggleDarkMode()
+  setCache('darkMode', isDark.value)
+}
 
 const toggleIcon = ref('ri-menu-3-line')
 

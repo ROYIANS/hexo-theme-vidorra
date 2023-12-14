@@ -10,8 +10,6 @@
   </n-loading-bar-provider>
 </template>
 <script setup lang="ts">
-import {NDialogProvider, NLoadingBarProvider, NMessageProvider, NNotificationProvider} from 'naive-ui'
-
 // fix: 解决 naive-ui 和 tailwindcss 冲突问题
 onBeforeMount(() => {
   const meta = document.createElement('meta')
@@ -19,3 +17,15 @@ onBeforeMount(() => {
   document.head.appendChild(meta)
 })
 </script>
+
+<style>
+.page-enter-active,
+.page-leave-active {
+  transition: all 0.4s;
+}
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
+  filter: blur(1rem);
+}
+</style>

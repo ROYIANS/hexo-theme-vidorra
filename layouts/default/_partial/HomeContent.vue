@@ -81,9 +81,12 @@
               </div>
             </div>
           </template>
-          <div class="bg-black text-base text-white w-max px-5 py-1 ml-2 my-2 cursor-pointer">
-            <span>查看全部</span>
-            <i class="ri-arrow-right-line"></i>
+          <div class="absolute w-full bottom-0 bg-white dark:bg-zinc-900">
+            <div class="lg:hidden bg-gradient-to-t from-white dark:from-zinc-900 w-full absolute -top-6 left-0 h-6"></div>
+            <div class="bg-black dark:bg-default-theme-primary text-base text-white w-max px-5 py-1 ml-2 my-2 cursor-pointer rounded">
+              <span class="pr-2">查看全部</span>
+              <i class="ri-arrow-right-line"></i>
+            </div>
           </div>
         </section>
       </n-scrollbar>

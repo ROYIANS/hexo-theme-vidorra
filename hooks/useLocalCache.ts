@@ -4,7 +4,8 @@ import { useLocalStorage } from '@vueuse/core';
 const defCache= {
   token: '',
   userInfo: { username: '', avatar: '' },
-  theme: 'default' as 'default' | 'custom'
+  theme: 'default' as 'default' | 'custom',
+  darkMode: false
 };
 
 type LocalCacheValueType = typeof defCache;

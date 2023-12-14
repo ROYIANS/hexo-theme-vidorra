@@ -44,6 +44,7 @@ import '~/assets/css/default/index.css';
 import 'remixicon/fonts/remixicon.css';
 import Header from "./_partial/Header.vue";
 import Footer from "./_partial/Footer.vue";
+import useLocalCache from "~/hooks/useLocalCache";
 import { useDark } from '@vueuse/core'
 import { NConfigProvider, NBackTop, darkTheme } from 'naive-ui'
 
@@ -81,6 +82,9 @@ const themeOverrides: import('naive-ui').GlobalThemeOverrides = {
   }
 }
 
+const { getCache } = useLocalCache()
+const darkMode = getCache('darkMode')
+const curTheme = ref(darkMode ? darkTheme : null)
 const isDark = useDark()
 
 // head externals
@@ -116,10 +120,6 @@ const headerConfig = siteConfig.value?.theme_config?.header || {}
 const siteAuthor = siteConfig.value?.author || '佚名'
 // 社交链接
 const socialLinks = siteConfig.value?.theme_config?.links as any[]
-
-const curTheme = computed(() => {
-  return isDark.value ? darkTheme : null
-})
 
 useSeoMeta({
   title: props.pageTitle ? `${props.pageTitle} - ${siteTitle}` : siteTitle,
@@ -185,5 +185,11 @@ onMounted(() => {
     document.body.classList.add('bg-default-theme-sideline')
     document.body.classList.add('dark:bg-black')
   }, 500)
+})
+
+watch(isDark, (value) => {
+  curTheme.value = value ? darkTheme : null
+}, {
+  immediate: true
 })
 </script>
