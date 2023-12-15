@@ -167,7 +167,7 @@ onMounted(() => {
   border-radius: 50%;
   width: var(--cursor-size);
   height: var(--cursor-size);
-  //mix-blend-mode: difference;
+  /*mix-blend-mode: difference;*/
   pointer-events: none;
   user-select: none;
 }
