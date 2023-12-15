@@ -159,6 +159,7 @@ onMounted(() => {
 .cursor .cursor--small,
 .cursor .cursor--large,
 .cursor .cursor--text {
+  @apply z-2147483646;
   position: fixed;
   left: 0;
   top: 0;

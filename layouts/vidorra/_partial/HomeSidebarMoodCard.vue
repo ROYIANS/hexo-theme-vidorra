@@ -1,6 +1,6 @@
 <template>
-  <div class="bg-white dark:bg-zinc-900 dark:bg-opacity-80 rounded-sm border xl:relative xl:top-0
-              dark:border-zinc-800 bg-opacity-80 pb-5 sticky top-8 h-max">
+  <div class="bg-white dark:bg-zinc-900 dark:bg-opacity-80 rounded-sm border relative
+              dark:border-zinc-800 bg-opacity-80 mb-3 h-max">
     <div class="h-14 absolute top-0 inset-x-0 z-1 pointer-events-none bg-gradient-to-t from-white dark:from-zinc-900 w-full z-99"></div>
     <div class="h-14 absolute top-0 inset-x-0 z-0 pointer-events-none bg-gradient-to-r from-default-theme-primary-200 via-60% via-yellow-100 to-blue-100
                       dark:from-default-theme-primary-dark-600 dark:to-transparent"></div>
@@ -14,10 +14,7 @@
         {{ hitokoto }}
       </div>
       <n-divider class="!my-2" />
-      <div class="px-4 grid xl:grid-cols-2 md:grid-cols-1">
-        <MoodCard class="dark:border-zinc-800 border-b md:border-b md:border-r-0 xl:border-r xl:border-b-0"/>
-        <QWeather />
-      </div>
+      <MoodCard class="px-4 dark:border-zinc-800"/>
     </div>
   </div>
 </template>

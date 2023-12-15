@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-full heti--serif grid grid-cols-2">
+  <div class="w-full h-full heti--serif grid grid-cols-2 p-4">
     <div class="font-black text-xl justify-self-start">{{ displayYear }}/{{ displayMonth }}</div>
     <div class="font-bold text-xl justify-self-end">
       <n-button-group size="tiny">

@@ -23,6 +23,9 @@ dependencies:
   vooks:
     specifier: ^0.2.12
     version: 0.2.12(vue@3.3.11)
+  wordcloud:
+    specifier: ^1.2.2
+    version: 1.2.2
 
 devDependencies:
   '@css-render/vue3-ssr':
@@ -7012,6 +7015,10 @@ packages:
     dependencies:
       string-width: 4.2.3
     dev: true
+
+  /wordcloud@1.2.2:
+    resolution: {integrity: sha512-fUnDsGrHXou+49j1OeKaC7nOeZPx+sWjIet0L/j6eAcm0nXy+a+AuUs/iDAX4PLBg1Zc6wgXWXhoXdQsXRWAEw==}
+    dev: false
 
   /wrap-ansi@7.0.0:
     resolution: {integrity: sha512-YVGIj2kamLSTxw6NsZjoBxfSwsn0ycdesmc4p+Q21c5zPuZ1pl+NfxVdxPtdHvmNVOQ6XSYG4AUtyt/Fi7D16Q==}

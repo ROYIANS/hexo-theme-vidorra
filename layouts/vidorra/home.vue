@@ -35,9 +35,11 @@
           <HomeContentTop />
         </div>
       </section>
-      <section class="order-2 grow shrink basis-1/12 relative xl:mt-4 transition-all">
-        <HomeAuthorCard />
-        <HomeSidebarMoodWeatherCard />
+      <section class="order-2 grow shrink basis-1/12 sticky h-max top-5 xl:relative xl:top-0 xl:mt-4 transition-all">
+        <HomeSidebarAuthorCard />
+        <HomeSidebarMoodCard />
+        <HomeSidebarWeatherCard />
+        <HomeSidebarTagCard />
       </section>
     </div>
   </DefaultLayout>
@@ -46,6 +48,8 @@
 <script setup lang="ts">
 import DefaultLayout from './default.vue'
 import HomeContentTop from "./_partial/HomeContentTop.vue";
-import HomeSidebarMoodWeatherCard from "./_partial/HomeSidebarMoodWeatherCard.vue";
-import HomeAuthorCard from "./_partial/HomeAuthorCard.vue";
+import HomeSidebarMoodCard from "./_partial/HomeSidebarMoodCard.vue";
+import HomeSidebarAuthorCard from "./_partial/HomeSidebarAuthorCard.vue";
+import HomeSidebarWeatherCard from "./_partial/HomeSidebarWeatherCard.vue";
+import HomeSidebarTagCard from "./_partial/HomeSidebarTagCard.vue";
 </script>
