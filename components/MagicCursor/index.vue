@@ -1,23 +1,30 @@
 <template>
-  <div class="cursor">
+  <div class="xl:hidden cursor">
     <div ref="cursorSmall" class="cursor--small"></div>
     <div ref="cursorLarge" class="cursor--large"></div>
     <div ref="cursorText" class="cursor--text">
-      <div ref="cursorTextInner" class="text"></div>
+      <div ref="cursorTextInner" class="text heti--sans">GO GO GO GO</div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { gsap } from 'gsap'
+import {gsap} from 'gsap'
 import CircleType from 'circletype'
+import {useIsMobile, useIsTablet} from "~/utils/composables.js";
 
 const cursorSmall = ref()
 const cursorLarge = ref()
 const cursorText = ref()
 const cursorTextInner = ref()
 
+const isMobile = useIsMobile()
+const isTablet = useIsTablet()
+
 onMounted(() => {
+  if (isMobile.value || isTablet.value) {
+    return
+  }
   const cursorOuter = cursorLarge.value;
   const cursorInner = cursorSmall.value;
   const cursorTextContainerEl = cursorText.value;
@@ -26,17 +33,10 @@ onMounted(() => {
   const hoverItems = document.querySelectorAll(".cursor-hover-item");
   const hoverEffectDuration = 0.3;
   let isHovered = false;
-  let initialCursorHeight;
 
   const cursorRotationDuration = 8;
 
   let circleType = new CircleType(cursorTextEl);
-  circleType.radius(50);
-
-  setTimeout(() => {
-    initialCursorHeight = circleType.container.style.getPropertyValue("height");
-    console.log(initialCursorHeight);
-  }, 1000);
 
   hoverItems.forEach((item) => {
     item.addEventListener("pointerenter", handlePointerEnter);
@@ -51,8 +51,8 @@ onMounted(() => {
   document.body.addEventListener("pointermove", updateCursorPosition);
 
   function updateCursorPosition(e) {
-    mouse.x = e.pageX;
-    mouse.y = e.pageY;
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
   }
 
   function updateCursor() {
@@ -87,11 +87,6 @@ onMounted(() => {
     const target = e.currentTarget;
     updateCursorText(target);
 
-    gsap.set([cursorTextContainerEl, cursorTextEl], {
-      height: initialCursorHeight,
-      width: initialCursorHeight
-    });
-
     gsap.fromTo(
         cursorTextContainerEl,
         {
@@ -106,14 +101,14 @@ onMounted(() => {
     );
 
     gsap.to(cursorInner, hoverEffectDuration, {
-      scale: 2
+      scale: 5
     });
 
     gsap.fromTo(
         cursorTextContainerEl,
         hoverEffectDuration,
         {
-          scale: 1.2,
+          scale: 1.25,
           opacity: 0
         },
         {
@@ -137,9 +132,9 @@ onMounted(() => {
   }
 
   function updateCursorText(textEl) {
-    const cursorTextRepeatTimes = textEl.getAttribute("data-cursor-text-repeat");
+    const cursorTextRepeatTimes = textEl.getAttribute("data-cursor-text-repeat") || 4;
     const cursorText = returnMultipleString(
-        textEl.getAttribute("data-cursor-text"),
+        textEl.getAttribute("data-cursor-text") || '',
         cursorTextRepeatTimes
     );
 
@@ -161,10 +156,6 @@ onMounted(() => {
 
 <style>
 
-body {
-  cursor: none;
-}
-
 .cursor .cursor--small,
 .cursor .cursor--large,
 .cursor .cursor--text {
@@ -175,26 +166,33 @@ body {
   border-radius: 50%;
   width: var(--cursor-size);
   height: var(--cursor-size);
-  mix-blend-mode: difference;
+  //mix-blend-mode: difference;
   pointer-events: none;
   user-select: none;
 }
+
 .cursor .cursor--text {
   --cursor-size: fit-content;
   font-size: 0.75rem;
   color: #fff;
   opacity: 0;
+  mix-blend-mode: difference;
 }
+
 .cursor .cursor--text .text {
-  font-family: sans-serif;
   font-weight: bold;
+  line-height: normal;
+  font-size: 10px;
 }
+
 .cursor .cursor--small {
-  --cursor-size: 20px;
-  background: #fff;
+  --cursor-size: 8px;
+  background: rgba(105, 144, 87, 0.8);
 }
+
 .cursor .cursor--large {
-  --cursor-size: 60px;
+  --cursor-size: 40px;
   border: 2px solid #fff;
+  mix-blend-mode: difference;
 }
 </style>

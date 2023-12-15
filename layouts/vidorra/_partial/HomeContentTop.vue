@@ -11,17 +11,24 @@
     <div class="grid grid-cols-3 grid-flow-row-dense xl:block gap-4 overflow-hidden h-96 lg:h-auto">
       <section class="order-2 col-span-2 overflow-hidden border-black border-2 dark:border-default-theme-primary-dark-200 h-full">
         <n-carousel show-arrow autoplay draggable>
-          <div v-for="(post, index) in totalStickyPosts" :key="index" class="w-full h-full relative">
+          <div v-for="(post, index) in totalStickyPosts" :key="index" class="w-full h-full relative group">
             <img
                 class="w-full h-full lg:h-auto lg:aspect-video object-cover"
                 :alt="post.title"
                 :src="post.cover"
             />
-            <div class="heti--sans p-2 cursor-pointer absolute rounded-tr-3xl lg:relative lg:bg-transparent lg:w-full left-0 bottom-0 bg-white dark:bg-zinc-800 dark:bg-opacity-80 dark:lg:bg-transparent bg-opacity-80 w-4/5">
-              <div class="text-xs">{{ post?.categories?.map(c => c.name).join('  /  ') }}</div>
+            <div class="heti--sans p-2 cursor-pointer absolute lg:relative lg:w-full lg:from-transparent
+                        left-0 bottom-0 bg-gradient-to-t from-zinc-800 from-5% dark:lg:bg-transparent lg:text-inherit
+                        text-white w-full">
+              <div class="text-xs p-1">{{ post?.categories?.map(c => c.name).join('  /  ') }}</div>
               <div class="text-4xl font-black tracking-tighter uppercase hover:underline">{{ post.title }}</div>
-              <div class="text-sm pt-4 heti--serif leading-tight">{{ post.description }}</div>
-              <div class="text-xs pt-2">{{ post?.author }}</div>
+              <div class="text-sm mt-4 heti--serif leading-tight group-hover:scale-y-100 lg:block
+                          grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500">
+                <div class="overflow-hidden">
+                  <span>{{ post.description }}</span>
+                </div>
+              </div>
+              <div class="text-xs pt-2 px-1">{{ post?.author || siteInfo.author }}</div>
             </div>
           </div>
           <template #arrow="{ prev, next }">
@@ -85,7 +92,6 @@
             <div class="lg:hidden bg-gradient-to-t from-white dark:from-zinc-900 w-full absolute -top-6 left-0 h-6"></div>
             <div
                 data-cursor-text="查看全部文章"
-                data-cursor-text-repeat="2"
                 class="cursor-hover-item bg-black dark:bg-default-theme-primary text-base text-white
                        dark:text-zinc-900 w-max px-5 py-1 ml-2 my-2 cursor-pointer rounded"
             >

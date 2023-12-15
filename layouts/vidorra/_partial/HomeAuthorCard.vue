@@ -16,7 +16,7 @@
           </div>
           <div class="text-xs">{{ me.description }}</div>
         </div>
-        <div class="text-sm bg-default-theme-primary w-full h-0 group-hover:h-10
+        <div class="text-sm bg-black dark:bg-default-theme-primary w-full h-0 group-hover:h-10
                     transition-[height] duration-500">
           <div v-if="links.length" class="flex items-center gap-3 h-10 w-full justify-center">
             <a v-for="(link, index) in links" :key="index" class="text-lg flex" :title="link.title" :href="link.url">
@@ -46,7 +46,7 @@
 </template>
 
 <script setup lang="ts">
-import useHexoData from "~/hooks/useHexoData.ts";
+import useHexoData from "~/hooks/useHexoData";
 
 const hexo = await useHexoData()
 

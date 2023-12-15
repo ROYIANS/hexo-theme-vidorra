@@ -27,7 +27,7 @@
               <router-link
                   v-if="item.url[0] === '/'"
                   :to="item.url"
-                  class="no-underline flex items-center py-3 leading-none touch-manipulation
+                  class="cursor-hover-item no-underline flex items-center my-3 leading-none touch-manipulation
                          after:content-[''] after:flex-grow after:ml-1 after:inline-block after:h-px after:dark:border-zinc-800
                          after:border-b after:border-dashed after:border-gray-200 after:hover:border-solid
                          hover:text-default-theme-primary hover:after:border-default-theme-primary">
@@ -38,7 +38,8 @@
                   v-else
                   :href="item.url"
                   target="_blank"
-                  class="no-underline flex items-center py-3 leading-none touch-manipulation after:dark:border-zinc-800
+                  data-cursor-text="点击跳转 →"
+                  class="cursor-hover-item no-underline flex items-center my-3 leading-none touch-manipulation after:dark:border-zinc-800
                          after:content-[''] after:flex-grow after:ml-1 after:inline-block after:h-px
                          after:border-b after:border-dashed after:border-gray-200 after:hover:border-solid
                          hover:text-default-theme-primary hover:after:border-default-theme-primary">
@@ -49,7 +50,13 @@
           </template>
         </ul>
         <div class="py-5 w-full">
-          <NButton type="primary" block class="!w-full">
+          <NButton
+              type="primary"
+              block
+              class="!w-full cursor-hover-item"
+              :data-cursor-text="`你好，欢迎来到${siteTitle}！`"
+              data-cursor-text-repeat="2"
+          >
             <template #icon>
               <i class="ri-login-box-line" />
             </template>

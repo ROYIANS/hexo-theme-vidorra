@@ -32,7 +32,7 @@
       </div>
     </main>
     <Footer :author="siteAuthor" :links="socialLinks"/>
-    <n-back-top class="!w-8 !h-8 !rounded-sm !min-w-0 !bg-default-theme-primary-100 hover:!bg-default-theme-primary-800">
+    <n-back-top class="!w-8 !h-8 !rounded-sm !min-w-0 !bg-black !text-white dark:!bg-default-theme-primary hover:!bg-default-theme-primary-800">
       <i class="ri-skip-up-line" />
     </n-back-top>
   </n-config-provider>
