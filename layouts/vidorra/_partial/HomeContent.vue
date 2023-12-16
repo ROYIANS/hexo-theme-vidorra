@@ -4,7 +4,9 @@
       <ul ref="categoriesInnerRef" class="grid grid-flow-col auto-cols-max rounded-sm overflow-x-auto pr-14">
         <li v-if="curPage !== 1" class="px-4 py-1 m-1 cursor-pointer hover:bg-black hover:text-white dark:hover:bg-default-theme-primary
                    dark:hover:text-zinc-900 rounded">
-          <span>首页</span>
+          <router-link to="/">
+            <span>首页</span>
+          </router-link>
         </li>
         <li class="px-4 py-1 m-1 bg-black dark:bg-default-theme-primary text-white dark:text-zinc-900 cursor-pointer
                    hover:bg-black hover:text-white dark:hover:bg-default-theme-primary dark:hover:text-zinc-900 rounded">
@@ -28,7 +30,7 @@
             <div v-if="post.recommend" class="absolute w-6 h-6 top-0 -left-6 flex items-center justify-center">
               <i class="ri-sparkling-2-fill text-orange-500 dark:text-orange-900"></i>
             </div>
-            <div class="w-full h-full border text-zinc-700 dark:border-zinc-800 dark:text-zinc-300 overflow-hidden relative">
+            <div class="w-full h-full border text-zinc-700 dark:border-zinc-800 dark:text-zinc-300 overflow-hidden relative group/img">
               <div class="w-full h-full flex items-center justify-center">
                 <div>
                   <div class="text-2xl font-black text-center">{{ $dayjs(post.date).format('DD') }}</div>
@@ -36,13 +38,14 @@
                 </div>
               </div>
               <img v-if="post.cover"
+                   :alt="post.title || '未命名文档'"
                    :src="post.cover"
-                   class="w-full h-full object-cover absolute top-0 group-hover:top-[100%]
+                   class="w-full h-full object-cover absolute top-0 group-hover/img:top-[100%]
                           transition-[top] duration-500"/>
             </div>
           </div>
           <div class="col-span-5 px-5 grid">
-            <div class="text-xl font-black group-hover:underline self-start">{{ post.title }}</div>
+            <div class="text-xl font-black group-hover:underline self-start">{{ post.title || '未命名文档' }}</div>
             <div v-if="post.description" class="description heti--serif text-sm py-2">{{ post.description }}</div>
             <div class="text-xs text-zinc-600 dark:text-zinc-400 self-end">
               <span class="text-default-theme-primary">{{ $dayjs(post.date || $dayjs()).fromNow() }}</span>
@@ -71,7 +74,7 @@
           :on-update:page="onPageChange"
       >
         <template #prefix>
-          <div class="absolute left-0 px-6">
+          <div class="absolute left-0 px-6 md:hidden">
             共有 {{ totalPostsCount }} 篇作品
           </div>
         </template>
