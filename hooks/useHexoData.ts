@@ -2,9 +2,19 @@ import type {SiteInfo} from "~/types/site";
 import type {Post} from "~/types/post";
 import type {Tag} from "~/types/tag";
 import type {Category} from "~/types/category";
+import type {Data} from "~/types/data";
+
 import hexoDb from "~/api/hexo";
 
-type HexoDataType = { site: SiteInfo, posts: Post[], tags: Tag[], categories: Category[] }
+const dayJs = useDayjs()
+
+type HexoDataType = {
+  site: SiteInfo,
+  posts: Post[],
+  tags: Tag[],
+  categories: Category[],
+  data: Data
+}
 
 type PagedPosts = {
   total: number,
@@ -18,13 +28,15 @@ class HexoData {
   private posts: Post[];
   private tags: Tag[];
   private categories: Category[]
+  private data: Data
 
-  constructor(data: HexoDataType) {
-    const {site, posts, tags, categories} = data
+  constructor(hexoData: HexoDataType) {
+    const {site, posts, tags, categories, data} = hexoData
     this.siteConfig = site
     this.posts = posts
     this.tags = tags
     this.categories = categories
+    this.data = data
   }
 
   getSiteConfig() {
@@ -45,6 +57,20 @@ class HexoData {
 
   getThemeConfig() {
     return this.siteConfig!.theme_config
+  }
+
+  getAllData() {
+    return this.data
+  }
+
+  getMoods() {
+    return this.data.mood
+  }
+
+  getMoodToday() {
+    return this.data.mood.find(item => {
+      return dayJs(item.date).format('YYYY-MM-DD') === dayJs().format('YYYY-MM-DD')
+    })
   }
 
   getPagedPosts(curPage: number, pageNum?: number): PagedPosts {

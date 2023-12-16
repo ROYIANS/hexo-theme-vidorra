@@ -123,8 +123,12 @@ const scrollToEnd = () => {
   }
 }
 
-const onPageChange = (pageInfo: number) => {
-  navigateTo({ path: `/page/${pageInfo}` })
+const onPageChange = async (pageInfo: number) => {
+  scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  })
+  await navigateTo({ path: `/page/${pageInfo}` })
 }
 
 onMounted(() => {

@@ -33,6 +33,7 @@
               v-if="curMonthMoods[i - startIndex]"
               :src="curMonthMoods[i - startIndex]?.url"
               :alt="curMonthMoods[i - startIndex]?.mood"
+              :title="curMonthMoods[i - startIndex]?.mood"
               class="w-full h-full rounded-full absolute inset-0 hover:animate-default-fade-out object-cover object-center"
           />
           <span>{{ i - startIndex + 1 }}</span>
@@ -48,8 +49,12 @@
 
 <script setup>
 import moods from "../config/moods.ts";
+import useHexoData from "~/hooks/useHexoData";
 
 const dayjs = useDayjs()
+const hexo = await useHexoData()
+
+const moodsData = hexo.getMoods()
 
 const currentMonth = dayjs().format('MM')
 const currentYear = dayjs().format('YYYY')
@@ -63,17 +68,34 @@ const weeks = ['日', '一', '二', '三', '四', '五', '六']
 const startIndex = ref(0)
 const endIndex = ref(0)
 
-const curMonthMoods = Object.keys(moods).map(item => {
-  return {
-    mood: item,
-    url: moods[item]
-  }
-})
+const curMonthMoods = ref({})
 
 const calculate = () => {
   startIndex.value = dayjs(`${displayYear.value}-${displayMonth.value}-01`).day() + 1
   const totalDay = dayjs(`${displayYear.value}-${displayMonth.value}-01`).daysInMonth()
   endIndex.value = startIndex.value + totalDay
+
+  setCurMonthMoods()
+}
+
+const setCurMonthMoods = () => {
+  const filteredMoods = moodsData.filter(item => {
+    const itemYear = dayjs(item.date).format('YYYY')
+    const itemMonth = dayjs(item.date).format('MM')
+    return itemYear === displayYear.value && itemMonth === displayMonth.value
+  })
+
+  let dealtMonthMoods = {}
+
+  filteredMoods.forEach(mood => {
+    const itsDate = dayjs(mood.date).format('DD')
+    dealtMonthMoods[Number(itsDate) - 1] = {
+      mood: mood.description || mood.name,
+      url: moods[mood.mood] || moods.star
+    }
+  })
+
+  curMonthMoods.value = dealtMonthMoods
 }
 
 const increaseMonth = () => {

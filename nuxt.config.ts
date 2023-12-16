@@ -4,6 +4,11 @@ import { NaiveUiResolver } from 'unplugin-vue-components/resolvers';
 
 export default defineNuxtConfig({
   devtools: { enabled: true },
+  router: {
+    options: {
+      scrollBehaviorType: 'smooth'
+    }
+  },
   app: {
     head: {
       charset: 'utf-8',
