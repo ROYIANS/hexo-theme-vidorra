@@ -2,7 +2,7 @@
   <div class="heti--serif grid grid-cols-1 relative justify-items-center items-center w-full h-64 text-sm p-4 overflow-hidden">
     <div class="h-full w-12 absolute left-0 top-0 bg-gradient-to-r from-white dark:from-zinc-900 z-1"></div>
     <div class="h-full w-12 absolute right-0 top-0 bg-gradient-to-l from-white dark:from-zinc-900 z-1"></div>
-    <img alt="mood" :src="moods[curMood]" class="w-20 h-20 hover:animate-spin-y-1.5 object-cover overflow-visible" />
+    <img alt="mood" :src="moods[curMood]" class="w-20 h-20 hover:animate-spin-y-1.5 object-cover" />
     <ul class="animate-scroll py-5 m-auto list-none absolute top-1/2 -translate-y-1/2 left-0 heti--sans -z-1">
       <template v-for="i in 8" :key="i">
         <li class="relative mx-auto p-0 -m-1.5 list-none">

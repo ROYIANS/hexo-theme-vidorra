@@ -1,12 +1,15 @@
 <template>
-  <div ref="tagCloud" class="w-full h-48 heti--serif"></div>
+  <div ref="tagCloud" class="w-full h-48 heti--serif overflow-hidden"></div>
 </template>
 
 <script setup>
 import useHexoData from "~/hooks/useHexoData";
+import useChineseColor from "~/hooks/useChineseColor";
+
 const { $WordCloud } = useNuxtApp()
 
 const hexo = await useHexoData()
+const { getRandomChineseColor } = useChineseColor()
 
 const tags = hexo.getTagList()
 
@@ -23,7 +26,10 @@ onMounted(() => {
     weightFactor: 16,
     fontFamily: '"Oswald", "Sarasa Gothic SC", "Sarasa UI SC", "Noto Sans SC", sans-serif',
     // fontFamily: '"Newsreader", "Noto Serif SC", serif',
-    color: 'random-dark',
+    color: () => {
+      const randomColor = getRandomChineseColor()
+      return randomColor.hex
+    },
     backgroundColor: 'transparent',
     rotateRatio: 0
   });

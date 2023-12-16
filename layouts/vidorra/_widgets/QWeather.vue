@@ -45,6 +45,19 @@ onMounted(() => {
   color: #212121!important;
 }
 
+.wv-n-h-now {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.wv-n-h-now > div:first-child {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .wv-lt-row, .wv-lt-col-7, .wv-lt-location {
   text-align: center!important;
   width: 100%!important;

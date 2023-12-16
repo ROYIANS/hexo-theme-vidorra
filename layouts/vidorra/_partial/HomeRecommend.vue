@@ -8,7 +8,7 @@
       </template>
       {{ announcement.content }}
     </n-alert>
-    <div class="grid grid-cols-3 grid-flow-row-dense xl:block gap-4 overflow-hidden h-96 lg:h-auto">
+    <div class="grid grid-cols-3 grid-flow-row-dense lg:block gap-4 overflow-hidden h-96 lg:h-auto">
       <section class="order-2 col-span-2 overflow-hidden border-black border-2 dark:border-default-theme-primary-dark-200 h-full">
         <n-carousel show-arrow autoplay draggable>
           <div v-for="(post, index) in totalStickyPosts" :key="index" class="w-full h-full relative group">
@@ -58,9 +58,9 @@
         </n-carousel>
       </section>
       <n-scrollbar>
-        <section class="order-1 col-span-1 overflow-auto xl:pt-4">
+        <section class="order-1 col-span-1 overflow-auto xl:pt-4 pb-16">
           <div class="w-max h-8 p-2">
-            <div class="w-full h-full z-0 relative after:w-full after:h-1/2 after:bg-default-theme-primary-300 dark:after:bg-default-theme-primary-dark-600 after:absolute after:top-2/3 after:-right-1/3 after:-z-1">Recent.</div>
+            <div class="w-full h-full z-0 relative after:w-full after:h-1/2 after:bg-default-theme-primary-300 dark:after:bg-default-theme-primary-dark-600 after:absolute after:top-2/3 after:-right-1/3 after:-z-1">Recommend.</div>
           </div>
           <template v-for="(post, index) in topFivePosts">
             <div
@@ -146,7 +146,9 @@ if (totalStickyPosts.value.length === 0) {
   totalStickyPosts.value = postsList?.slice(0, 3) || []
 }
 
-const topFivePosts = postsList?.slice(0, 5) || []
+const topFivePosts = postsList?.filter(item => {
+  return item.recommend
+}).slice(0, 5)
 </script>
 
 <style>

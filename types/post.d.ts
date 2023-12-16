@@ -17,6 +17,7 @@ export interface Post {
   keywords: string[],
   cover: string[],
   link: string,
+  recommend: boolean,
   photos: string[],
   categories: Category[],
   tags: Tag[]

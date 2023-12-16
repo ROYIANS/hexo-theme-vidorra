@@ -46,6 +46,7 @@ const generatePostData = (posts) => {
             cover: posts_props(post.cover),
             link: posts_props(post.link),
             photos: posts_props(post.photos),
+            recommend: posts_props(post.recommend),
             categories: posts_props(() => {
                 return post.categories.map((cat) => {
                     return {

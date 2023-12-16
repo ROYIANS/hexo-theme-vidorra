@@ -108,8 +108,8 @@
       <li class="blog-button-sm" title="亮色/暗色模式" @click="toggleDarkMode()">
         <i class="ri-contrast-line"></i>
       </li>
-      <li class="blog-button-sm" title="音乐盒子" @click="button.trigger">
-        <i class="ri-disc-line"></i>
+      <li class="blog-button-sm" title="主题色" @click="button.trigger">
+        <i class="ri-t-shirt-2-line"></i>
       </li>
     </ul>
   </nav>
@@ -153,8 +153,8 @@
             <li class="blog-button-lg" title="亮色/暗色模式" @click="toggleDarkMode()">
               <i class="ri-contrast-line"></i>
             </li>
-            <li class="blog-button-lg" title="音乐盒子" @click="button.trigger">
-              <i class="ri-disc-line"></i>
+            <li class="blog-button-lg" title="主题色" @click="button.trigger">
+              <i class="ri-t-shirt-2-line"></i>
             </li>
           </ul>
         </div>
