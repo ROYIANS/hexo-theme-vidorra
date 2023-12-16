@@ -71,13 +71,13 @@
                   class="overflow-hidden py-2"
                   :class="post.cover ? 'col-span-2' : 'col-span-3'"
               >
-                <div class="font-bold text-2xl cursor-pointer hover:underline">{{ post.title || '未命名文档' }}</div>
+                <div class="font-bold text-2xl cursor-pointer hover:underline self-start">{{ post.title || '未命名文档' }}</div>
                 <div v-if="post.description" class="heti--serif text-sm py-2 flex">
                   <n-ellipsis :line-clamp="4" :tooltip="false">
                     {{ post.description || '' }}
                   </n-ellipsis>
                 </div>
-                <div class="flex justify-start items-center">
+                <div class="flex justify-start items-center self-end">
                   <span class="text-xs" :title="$dayjs(post.date).format('YYYY-MM-DD HH:mm:ss')">{{ $dayjs(post.date || $dayjs()).fromNow() }}</span>
                   <span class="mx-1 w-1 h-1 bg-gray-400 inline-block rounded-full"></span>
                   <span class="text-xs">{{ post.author || siteInfo.author }}</span>

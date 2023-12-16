@@ -84,7 +84,7 @@ class HexoData {
       list = clonedPosts
     } else {
       const offset = curPageNum * (curPage - 1)
-      list = clonedPosts.slice(offset, curPageNum)
+      list = clonedPosts.slice(offset, curPageNum + offset)
     }
 
     return {

@@ -21,10 +21,10 @@
         <i :class="scrollIcon"></i>
       </div>
     </div>
-    <div class="px-8 w-full flex flex-wrap flex-auto lg:block">
-      <div class="basis-1/2 grow shrink [&:has(.description)]:basis-11/12 group cursor-pointer" v-for="(post, index) in posts.list" :key="index">
-        <div class="px-2 my-2 grid grid-cols-6">
-          <div class="col-span-1 relative" :class="post.cover ? 'min-h-[4.8rem]' : 'aspect-square'">
+    <div class="px-8 w-full flex flex-wrap flex-auto lg:block lg:pr-0 lg:pl-6">
+      <div class="basis-1/2 grow shrink [&:has(.description)]:basis-11/12 group cursor-pointer my-1 lg:my-8" v-for="(post, index) in posts.list" :key="index">
+        <div class="px-2 my-2 grid grid-cols-6 lg:px-0">
+          <div class="col-span-1 relative aspect-square">
             <div v-if="post.recommend" class="absolute w-6 h-6 top-0 -left-6 flex items-center justify-center">
               <i class="ri-sparkling-2-fill text-orange-500 dark:text-orange-900"></i>
             </div>
@@ -63,17 +63,41 @@
         </div>
       </div>
     </div>
+    <div class="px-8 pt-8 flex items-center justify-center">
+      <n-pagination
+          v-model:page="curPageNum"
+          :item-count="totalPostsCount"
+          :page-size="pageSize"
+          :on-update:page="onPageChange"
+      >
+        <template #prefix>
+          <div class="absolute left-0 px-6">
+            共有 {{ totalPostsCount }} 篇作品
+          </div>
+        </template>
+      </n-pagination>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import useHexoData from "~/hooks/useHexoData";
 
+const props = defineProps({
+  curPage: {
+    type: Number,
+    default: 1
+  }
+})
 const hexo = await useHexoData()
 
 const categories = hexo.getCategoryList()
-const posts = hexo.getPagedPosts(1)
+const posts = hexo.getPagedPosts(props.curPage)
 const siteInfo = hexo.getSiteConfig()
+const curPageNum = ref(props.curPage)
+
+const totalPostsCount = posts.total
+const pageSize = posts.pageNum
 
 const categoriesInnerRef = ref()
 
@@ -82,13 +106,6 @@ const hasScroll = computed(() => {
 })
 
 const scrollIcon = ref('ri-skip-right-fill')
-
-const props = defineProps({
-  curPage: {
-    type: Number,
-    default: 1
-  }
-})
 
 const scrollToEnd = () => {
   if (scrollIcon.value === 'ri-skip-right-fill') {
@@ -104,6 +121,10 @@ const scrollToEnd = () => {
     })
     scrollIcon.value = ('ri-skip-right-fill')
   }
+}
+
+const onPageChange = (pageInfo: number) => {
+  navigateTo({ path: `/page/${pageInfo}` })
 }
 
 onMounted(() => {
