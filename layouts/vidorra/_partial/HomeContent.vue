@@ -24,11 +24,11 @@
     <div class="px-8 w-full flex flex-wrap flex-auto lg:block">
       <div class="basis-1/2 grow shrink [&:has(.description)]:basis-11/12 group cursor-pointer" v-for="(post, index) in posts.list" :key="index">
         <div class="px-2 my-2 grid grid-cols-6">
-          <div class="col-span-1 aspect-square relative">
+          <div class="col-span-1 relative" :class="post.cover ? 'min-h-[4.8rem]' : 'aspect-square'">
             <div v-if="post.recommend" class="absolute w-6 h-6 top-0 -left-6 flex items-center justify-center">
               <i class="ri-sparkling-2-fill text-orange-500 dark:text-orange-900"></i>
             </div>
-            <div class="w-full h-full bg-zinc-100 text-zinc-700 dark:bg-zinc-900 dark:text-zinc-300 overflow-hidden relative">
+            <div class="w-full h-full border text-zinc-700 dark:border-zinc-800 dark:text-zinc-300 overflow-hidden relative">
               <div class="w-full h-full flex items-center justify-center">
                 <div>
                   <div class="text-2xl font-black text-center">{{ $dayjs(post.date).format('DD') }}</div>
@@ -44,8 +44,8 @@
           <div class="col-span-5 px-5 grid">
             <div class="text-xl font-black group-hover:underline self-start">{{ post.title }}</div>
             <div v-if="post.description" class="description heti--serif text-sm py-2">{{ post.description }}</div>
-            <div class="text-xs text-zinc-600 self-end">
-              <span>{{ $dayjs(post.date || $dayjs()).fromNow() }}</span>
+            <div class="text-xs text-zinc-600 dark:text-zinc-400 self-end">
+              <span class="text-default-theme-primary">{{ $dayjs(post.date || $dayjs()).fromNow() }}</span>
               <span> / </span>
               <i class="ri-pen-nib-line"></i>
               <span>{{ post.author || siteInfo.author }}</span>
