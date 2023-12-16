@@ -1,19 +1,13 @@
 <template>
-  <div class="w-full pb-5">
+  <div class="w-full pb-5 select-none">
     <div ref="categoriesRef" class="text-sm w-full p-4 relative">
       <ul ref="categoriesInnerRef" class="grid grid-flow-col auto-cols-max rounded-sm overflow-x-auto pr-14">
-        <li v-if="curPage !== 1" class="px-4 py-1 m-1 cursor-pointer hover:bg-black hover:text-white dark:hover:bg-default-theme-primary
-                   dark:hover:text-zinc-900 rounded">
-          <router-link to="/">
-            <span>首页</span>
-          </router-link>
-        </li>
         <li class="px-4 py-1 m-1 bg-black dark:bg-default-theme-primary text-white dark:text-zinc-900 cursor-pointer
-                   hover:bg-black hover:text-white dark:hover:bg-default-theme-primary dark:hover:text-zinc-900 rounded">
+                   cursor-hover-item hover:bg-black hover:text-white dark:hover:bg-default-theme-primary dark:hover:text-zinc-900 rounded">
           <span>全部</span>
         </li>
         <li v-for="(cat, index) in categories" :key="index" class="px-4 py-1 m-1 cursor-pointer hover:bg-black
-                   hover:text-white dark:hover:bg-default-theme-primary dark:hover:text-zinc-900 rounded">
+                   cursor-hover-item hover:text-white dark:hover:bg-default-theme-primary dark:hover:text-zinc-900 rounded">
           <span>{{ cat.name }}</span>
         </li>
       </ul>
@@ -45,7 +39,14 @@
             </div>
           </div>
           <div class="col-span-5 px-5 grid">
-            <div class="text-xl font-black group-hover:underline self-start">{{ post.title || '未命名文档' }}</div>
+            <h1
+                class="cursor-hover-item text-xl font-black group-hover:underline self-start"
+                data-cursor-text="点击阅读 → "
+            >
+              <NuxtLink :to="`/p/${post.uniqueId}`">
+                {{ post.title || '未命名文档' }}
+              </NuxtLink>
+            </h1>
             <div v-if="post.description" class="description heti--serif text-sm py-2">{{ post.description }}</div>
             <div class="text-xs text-zinc-600 dark:text-zinc-400 self-end">
               <span class="text-default-theme-primary">{{ $dayjs(post.date || $dayjs()).fromNow() }}</span>
@@ -71,8 +72,13 @@
           v-model:page="curPageNum"
           :item-count="totalPostsCount"
           :page-size="pageSize"
+          :page-slot="5"
           :on-update:page="onPageChange"
       >
+        <template #label="{ node }">
+          {{ node }}
+          <NuxtLink v-if="false" class="w-full h-full text-center" :to="`/page/${node}`" />
+        </template>
         <template #prefix>
           <div class="absolute left-0 px-6 md:hidden">
             共有 {{ totalPostsCount }} 篇作品

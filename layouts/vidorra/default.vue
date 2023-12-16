@@ -61,11 +61,11 @@
       </div>
     </main>
     <Footer :author="siteAuthor" :links="socialLinks"/>
-    <n-back-top class="!w-8 !h-8 !rounded-sm !min-w-0 !bg-black !text-white dark:!bg-default-theme-primary hover:!bg-default-theme-primary-800">
+    <n-back-top class="!z-2147483646 !w-8 !h-8 !rounded-sm !min-w-0 !bg-black !text-white dark:!bg-default-theme-primary hover:!bg-default-theme-primary-800">
       <i class="ri-skip-up-line" />
     </n-back-top>
+    <MagicCursor />
   </n-config-provider>
-  <MagicCursor />
 </template>
 
 <script setup lang="ts">
@@ -74,7 +74,7 @@ import 'remixicon/fonts/remixicon.css';
 import Header from "./_partial/Header.vue";
 import Footer from "./_partial/Footer.vue";
 import useLocalCache from "~/hooks/useLocalCache";
-import { darkTheme } from 'naive-ui'
+import { darkTheme, useLoadingBar } from 'naive-ui'
 import useHexoData from "~/hooks/useHexoData";
 
 const hexo = await useHexoData()
@@ -220,7 +220,10 @@ onMounted(() => {
   }, 500)
 })
 
+const loadingBar = useLoadingBar()
+
 onBeforeMount(() => {
+  loadingBar.start()
   toggleDarkMode(true)
 })
 
@@ -239,4 +242,55 @@ const toggleDarkMode = (notToggle = false) => {
 }
 
 provide('toggleDarkMode', toggleDarkMode)
+
+
+if (import.meta.client) {
+  // Hook to app lifecycle
+  const nuxtApp = useNuxtApp()
+  const router = useRouter()
+
+  const generateRouteKey = (route: RouteLocationNormalized) => {
+    const source = route?.meta.key ?? route.path
+        .replace(/(:\w+)\([^)]+\)/g, '$1')
+        .replace(/(:\w+)[?+*]/g, '$1')
+        .replace(/:\w+/g, r => route.params[r.slice(1)]?.toString() || '')
+    return typeof source === 'function' ? source(route) : source
+  }
+
+  const isChangingPage = (to: RouteLocationNormalized, from: RouteLocationNormalized) => {
+    if (to === from) { return false }
+
+    // If route keys are different then it will result in a rerender
+    if (generateRouteKey(to) !== generateRouteKey(from)) { return true }
+
+    const areComponentsSame = to.matched.every((comp, index) =>
+        comp.components && comp.components.default === from.matched[index]?.components?.default
+    )
+    return !areComponentsSame;
+  }
+
+  router.onError(() => {
+    loadingBar.error()
+  })
+  router.beforeResolve((to, from) => {
+    if (!isChangingPage(to, from)) {
+      loadingBar.finish()
+    }
+  })
+
+  router.afterEach((_to, _from, failure) => {
+    if (failure) {
+      loadingBar.error()
+    }
+  })
+
+  const unsubPage = nuxtApp.hook('page:finish', loadingBar.finish)
+  const unsubError = nuxtApp.hook('vue:error', loadingBar.error)
+
+  onBeforeUnmount(() => {
+    unsubPage()
+    unsubError()
+    loadingBar.finish()
+  })
+}
 </script>
