@@ -1,1 +1,0 @@
-import{aa as n}from"./entry.ee1dcf75.js";const s=o=>{const{textColorBase:t,opacity1:c,opacity2:a,opacity3:i,opacity4:p,opacity5:e}=o;return{color:t,opacity1Depth:c,opacity2Depth:a,opacity3Depth:i,opacity4Depth:p,opacity5Depth:e}},y={name:"Icon",common:n,self:s},m=y;export{m as i,s};
