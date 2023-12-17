@@ -1,1 +1,0 @@
-import{a,b as t,t as s,P as r,o as u}from"./entry.00c261f4.js";import{u as i}from"./index.cfaec0aa.js";const c={__name:"[id]",setup(l){const o=a();return i({title:`小梦岛-${o.params.id}`}),(e,p)=>(u(),t("div",null,"Hello~-$"+s((e._.provides[r]||e.$route).params.id),1))}};export{c as default};
