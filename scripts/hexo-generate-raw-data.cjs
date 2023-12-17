@@ -1,6 +1,3 @@
-const path = require("path");
-const matter = require('front-matter');
-const nanoId = require('nanoid')
 const fs = require("hexo-fs");
 
 let themeDir = ''
@@ -9,8 +6,8 @@ const saveData = (fileName, data) => {
     if (themeDir === '') {
         return
     }
-    const jsCode = `export default ${JSON.stringify(data, null, 4)};`;
-    fs.writeFileSync(`${themeDir}/${fileName}.js`, jsCode, {
+    const jsonCode = JSON.stringify(data, null, 4);
+    fs.writeFileSync(`${themeDir}/${fileName}.json`, jsonCode, {
         encoding: 'utf8'
     })
 }
@@ -137,7 +134,7 @@ const generateCategoryData = (categories) => {
 
 
 const generateRawData = (hexo) => {
-    themeDir = `${hexo.theme_dir}/data`
+    themeDir = `${hexo.theme_dir}/server/data`
     return new Promise((resolve, reject) => {
 
         saveData('site', hexo.config)

@@ -21,7 +21,7 @@
     <Header :site-title="siteTitle" :page-title="pageTitle" :nav-items="navItems" :sub-title="subTitle"
             :description="description" :logo="logoURI" :header-config="headerConfig"/>
     <main class="relative md:min-h-40 min-h-[--content-min-h] ml-[--side-width] bg-default-theme-background dark:bg-zinc-900
-               md:mt-12 md:pr-0 md:pl-0 md:pt-0 md:block p-2"
+               md:mt-12 md:pr-0 md:pl-0 md:pt-0 md:block p-2 [&:has(.main-content)]:p-0"
           style="box-shadow: rgba(0, 0, 0, 0.05) 0 1px 2px 0;">
       <div class="hidden dark:block absolute w-full h-full inset-0 overflow-hidden pointer-events-none">
         <svg class="absolute top-0 right-0" width="219" height="147" viewBox="0 0 219 147" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -155,7 +155,7 @@ const siteAuthor = siteConfig.author || '佚名'
 const socialLinks = themeConfig.links as any[]
 
 useSeoMeta({
-  title: props.pageTitle ? `${props.pageTitle} - ${siteTitle}` : siteTitle,
+  title: props.pageTitle ? `${props.pageTitle} | ${siteTitle}` : siteTitle,
   description: props.pageDescription || siteConfig.description,
   keywords: props.pageKeywords || siteConfig.keywords,
   author: props.pageAuthor || siteConfig.author
@@ -209,6 +209,7 @@ useHead({
   ],
   script: [
     {src: "https://unpkg.com/heti/umd/heti-addon.min.js"},
+    {src: "//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js", async: true},
     ...(head.scripts || [])
   ]
 })

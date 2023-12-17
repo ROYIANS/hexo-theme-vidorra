@@ -1,5 +1,6 @@
 const blogStarter = require('./hexo-start-blog.cjs')
 const blogGenerator = require('./hexo-generate-blog.cjs')
+const generateUniqueID = require("./hexo-generate-uniqueid.cjs")
 const generateRawData = require('./hexo-generate-raw-data.cjs')
 const copyAssets = require("./hexo-copy-assets.cjs");
 
@@ -13,9 +14,11 @@ hexo.extend.console.register('dreamland', 'serve and build for hexo-dreamland-bo
   hexo.source.watch().then(async () => {
     // do generate Blog Data
     hexo.locals.invalidate()
+    await generateUniqueID(hexo)
     await generateRawData(hexo)
     await copyAssets(hexo)
     if (args.dev) {
+      hexo.exit()
       return process.exit()
     }
     if (args.s || args.server) {

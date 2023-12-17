@@ -1,12 +1,14 @@
 const shell = require("shelljs");
 const file = require("hexo-fs");
 const generateRawData = require("./hexo-generate-raw-data.cjs");
+const generateUniqueID = require("./hexo-generate-uniqueid.cjs");
 const copyAssets = require("./hexo-copy-assets.cjs");
 
 const blogStarter = (hexo) => {
   hexo.source.addProcessor('*path', async () => {
     hexo.log.debug('[update] update blog data...')
     hexo.locals.invalidate()
+    await generateUniqueID(hexo)
     await generateRawData(hexo)
     await copyAssets(hexo)
   })

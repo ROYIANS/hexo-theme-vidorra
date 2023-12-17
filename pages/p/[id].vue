@@ -1,12 +1,12 @@
-<template>
-  <div>Hello~-${{ $route.params.id }}</div>
-</template>
+<script setup lang="ts">
+import useHexoData from "~/hooks/useHexoData";
 
-<script setup>
-
+const hexo = await useHexoData()
 const route = useRoute()
-
-useSeoMeta({
-  title: `小梦岛-${route.params.id}`
-})
+const themeConfig = hexo.getThemeConfig()
+const layout = `${themeConfig?.theme || 'vidorra'}-post`
 </script>
+
+<template>
+  <NuxtLayout :name="layout" />
+</template>

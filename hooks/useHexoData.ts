@@ -4,8 +4,6 @@ import type {Tag} from "~/types/tag";
 import type {Category} from "~/types/category";
 import type {Data} from "~/types/data";
 
-import hexoDb from "~/api/hexo";
-
 const dayJs = useDayjs()
 
 type HexoDataType = {
@@ -123,6 +121,6 @@ class HexoData {
 }
 
 export default async function useHexoData(): Promise<HexoData> {
-  const { data: hexoData } = await useAsyncData('hexoData', () => hexoDb())
+  const { data: hexoData } = await useAsyncData('hexoData', () => $fetch('/api/hexo/site'))
   return new HexoData(hexoData.value as HexoDataType)
 }

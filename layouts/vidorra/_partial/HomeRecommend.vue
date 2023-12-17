@@ -21,7 +21,11 @@
                         left-0 bottom-0 bg-gradient-to-t from-zinc-800 from-5% dark:lg:bg-transparent lg:text-inherit
                         text-white w-full">
               <div class="text-xs p-1">{{ post?.categories?.map(c => c.name).join('  /  ') }}</div>
-              <div class="cursor-hover-item text-4xl font-black tracking-tighter uppercase hover:underline">{{ post.title || '未命名文档' }}</div>
+              <div class="cursor-hover-item text-4xl font-black tracking-tighter uppercase hover:underline">
+                <NuxtLink :to="`/p/${post.uniqueId}`">
+                  {{ post.title || '未命名文档' }}
+                </NuxtLink>
+              </div>
               <div class="text-sm mt-4 heti--serif leading-tight group-hover:scale-y-100 lg:block
                           grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500">
                 <div class="overflow-hidden">
@@ -71,7 +75,11 @@
                   class="overflow-hidden py-2"
                   :class="post.cover ? 'col-span-2' : 'col-span-3'"
               >
-                <div class="cursor-hover-item font-bold text-2xl cursor-pointer hover:underline self-start">{{ post.title || '未命名文档' }}</div>
+                <div class="cursor-hover-item font-bold text-2xl cursor-pointer hover:underline self-start">
+                  <NuxtLink :to="`/p/${post.uniqueId}`">
+                    {{ post.title || '未命名文档' }}
+                  </NuxtLink>
+                </div>
                 <div v-if="post.description" class="heti--serif text-sm py-2 flex">
                   <n-ellipsis :line-clamp="4" :tooltip="false">
                     {{ post.description || '' }}

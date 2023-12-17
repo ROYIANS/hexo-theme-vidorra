@@ -1,47 +1,27 @@
 <template>
   <DefaultLayout>
-    <n-layout
-        :native-scrollbar="false"
-        :position="isMobile ? 'static' : 'absolute'"
-    >
-      <div class="banner" style="overflow: hidden">
-        <div class="banner-text">
-          <n-h1 :style="titleStyle" class="naive-title">
-          <span
-              @mouseenter="handleTitleMouseEnter"
-              @mouseleave="handleTitleMouseLeave"
-          >404</span>
-          </n-h1>
-          <n-p style="font-size: 16px; margin-top: 0; margin-bottom: 0">
-            notFound
-          </n-p>
-          <div>
-            <n-button
-                :ghost="false"
-                size="large"
-                type="primary"
-                text
-                tag="a"
-                href="/"
-            >
-              t('home')
-            </n-button>
-          </div>
-        </div>
-        <span
-            v-for="i in 40"
-            :key="`4-${i}`"
-            class="particle"
-            :style="get40Styles(i)"
-        >4</span>
-        <span
-            v-for="i in 40"
-            :key="`0-${i}`"
-            class="particle"
-            :style="get40Styles(40 + i)"
-        >0</span>
+    <div class="banner" style="overflow: hidden">
+      <div class="banner-text">
+        <n-h1 :style="titleStyle" class="naive-title">
+          <span>404</span>
+        </n-h1>
+        <n-p style="font-size: 16px; margin-top: 0; margin-bottom: 0">
+          notFound
+        </n-p>
       </div>
-    </n-layout>
+      <span
+          v-for="i in 40"
+          :key="`4-${i}`"
+          class="particle"
+          :style="get40Styles(i)"
+      >4</span>
+      <span
+          v-for="i in 40"
+          :key="`0-${i}`"
+          class="particle"
+          :style="get40Styles(40 + i)"
+      >0</span>
+    </div>
   </DefaultLayout>
 </template>
 
@@ -84,10 +64,9 @@ const get40Styles = (i: number) => {
 
 <style scoped>
 .banner {
-  height: calc(100vh - 64px);
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  position: relative;
   align-items: center;
   justify-content: center;
 }
@@ -117,7 +96,7 @@ const get40Styles = (i: number) => {
     padding-top: 60px;
     padding-right: 16px;
     min-height: 550px;
-    height: calc(100vh - 124px);
+    height: 100%;
   }
 
   .banner-text {

@@ -11,6 +11,11 @@
       <span>© {{ new Date().getFullYear().toString().substr(-4) }}</span>
       <i class="ri-hashtag"></i>
       <span>{{ author }}</span>
+      <i class="ri-cursor-line"></i>
+      <span id="busuanzi_container_site_uv">
+        本站总访问量
+        <span id="busuanzi_value_site_uv">???</span>人次
+      </span>
     </div>
     <!-- powered by -->
     <div class="flex items-center gap-2">

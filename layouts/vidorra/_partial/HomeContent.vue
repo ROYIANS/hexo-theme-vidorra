@@ -39,11 +39,8 @@
             </div>
           </div>
           <div class="col-span-5 px-5 grid">
-            <h1
-                class="cursor-hover-item text-xl font-black group-hover:underline self-start"
-                data-cursor-text="点击阅读 → "
-            >
-              <NuxtLink :to="`/p/${post.uniqueId}`">
+            <h1 class="text-xl font-black group-hover:underline self-start">
+              <NuxtLink :to="`/p/${post.uniqueId}`" class="cursor-hover-item" data-cursor-text="点击阅读 → ">
                 {{ post.title || '未命名文档' }}
               </NuxtLink>
             </h1>
@@ -77,7 +74,7 @@
       >
         <template #label="{ node }">
           {{ node }}
-          <NuxtLink v-if="false" class="w-full h-full text-center" :to="`/page/${node}`" />
+          <NuxtLink class="hidden w-full h-full text-center" :to="`/page/${node}`" />
         </template>
         <template #prefix>
           <div class="absolute left-0 px-6 md:hidden">
