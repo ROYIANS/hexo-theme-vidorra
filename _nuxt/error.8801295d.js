@@ -1,1 +1,0 @@
-import{d as a,a as t,c as n,g as r,t as c,af as s}from"./entry.0e4a9e84.js";const d=a({__name:"error",props:{error:Object},setup(e){const o=()=>s({redirect:"/"});return(l,i)=>(t(),n("div",null,[r("h2",null,c(e.error),1),r("button",{onClick:o},"Clear errors")]))}});export{d as default};
