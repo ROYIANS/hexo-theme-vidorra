@@ -1,1 +1,0 @@
-import{l as e}from"./entry.57c766a6.js";const n=o=>{const{textColor1:t,dividerColor:i,fontWeightStrong:r}=o;return{textColor:t,color:i,fontWeight:r}},s={name:"Divider",common:e,self:n},c=s;export{c as d,n as s};

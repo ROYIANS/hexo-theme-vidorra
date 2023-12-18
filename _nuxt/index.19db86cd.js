@@ -1,1 +1,0 @@
-import{d as _,w as c,u as r,b as u,a as m,e as p,_ as x}from"./entry.57c766a6.js";const f=_({__name:"index",async setup(i){let e,o;const a=([e,o]=c(()=>r()),e=await e,o(),e);u();const t=a.getThemeConfig(),n=`${(t==null?void 0:t.theme)||"vidorra"}-home`;return(d,h)=>{const s=x;return m(),p(s,{name:n})}}});export{f as default};
