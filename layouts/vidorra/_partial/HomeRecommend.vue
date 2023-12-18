@@ -68,7 +68,7 @@
           </div>
           <template v-for="(post, index) in topFivePosts">
             <div
-                class="w-full px-4 grid grid-cols-3"
+                class="w-full px-4 grid grid-cols-3 group"
                 :class="index === 0 ? '' : 'border-t dark:border-t-zinc-800'"
             >
               <div
@@ -92,7 +92,7 @@
                 </div>
               </div>
               <div v-if="post.cover" class="overflow-hidden my-2 ml-2 cursor-pointer">
-                <img :alt="post.title" :src="post.cover" class="w-full h-full object-cover grayscale hover:filter-none hover:scale-125 transition-all duration-1000" />
+                <img :alt="post.title" :src="post.cover" class="w-full h-full object-cover grayscale group-hover:filter-none group-hover:scale-125 transition-all duration-1000" />
               </div>
             </div>
           </template>

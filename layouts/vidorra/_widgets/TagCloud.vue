@@ -1,5 +1,7 @@
 <template>
-  <div ref="tagCloud" class="w-full h-48 heti--serif overflow-hidden"></div>
+  <div class="m-2">
+    <div ref="tagCloud" class="w-full h-48"></div>
+  </div>
 </template>
 
 <script setup>

@@ -64,7 +64,7 @@
                   <span>预计阅读</span>
                   <span class="lg:hidden px-2 block">/</span>
                   <span>
-                        <i class="ri-book-open-fill pr-1"></i>
+                        <i class="ri-hourglass-line pr-1"></i>
                         <span>{{ articleMinToRead }} 分钟</span>
                     </span>
                 </div>
@@ -151,10 +151,7 @@ const articleRef = ref()
 const articleWordCount = ref('0')
 const articleMinToRead = ref('0')
 
-const {
-  data: postData,
-  refresh
-} = await useAsyncData(`postData-${uniqueId}`, () => $fetch(`/api/hexo/post/${uniqueId || '-1'}`))
+const { data: postData } = await useAsyncData(`postData-${uniqueId}`, () => $fetch(`/api/hexo/post/${uniqueId || '-1'}`))
 
 const rawData = ref(postData.value?.raw || '' as string)
 const currentPost = ref(postData.value?.post || {} as Post)

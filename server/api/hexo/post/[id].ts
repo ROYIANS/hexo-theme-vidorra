@@ -4,7 +4,7 @@ import * as fs from "fs";
 export default defineEventHandler((event) : { code: number, raw: string | null, post: any } => {
   const uniqueId = getRouterParam(event, 'id')
   const findPost = posts.find(item => {
-    return item.uniqueId === uniqueId
+    return `${item.uniqueId}` === `${uniqueId}`
   })
   let code = 404
   let fileData = null
