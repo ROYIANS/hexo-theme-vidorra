@@ -6,9 +6,9 @@ const copyAssets = require("./hexo-copy-assets.cjs");
 
 hexo.extend.console.register('dreamland', 'serve and build for hexo-dreamland-book blog', {
   options: [
-    { name: '-s, --server', desc: 'Start Blog Server' },
-    { name: '-g, --generate', desc: 'Generate SSR Files For Blog' },
-    { name: '-dev, --dev', desc: 'Build Raw Data For Dev' }
+    { name: '--server', desc: 'Start Blog Server' },
+    { name: '--generate', desc: 'Generate SSR Files For Blog' },
+    { name: '--dev', desc: 'Build Raw Data For Dev' }
   ]
 }, (args = { s: true, g: false, dev: false }) => {
   hexo.source.watch().then(async () => {
@@ -17,6 +17,9 @@ hexo.extend.console.register('dreamland', 'serve and build for hexo-dreamland-bo
     await generateUniqueID(hexo)
     await generateRawData(hexo)
     await copyAssets(hexo)
+
+    console.log('准备部分完毕了')
+
     if (args.dev) {
       hexo.exit()
       return process.exit()
