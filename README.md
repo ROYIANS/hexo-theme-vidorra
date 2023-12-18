@@ -32,6 +32,11 @@ Awesome Nuxt3 + Hexo Blog Theme: <b>hexo-theme-vidorra</b><br>
   - [ ] 关于页
   - [ ] 和pocketbase后端联动增加评论、主题配置功能
 
+## 截图
+
+![preview-home-page.png](./README.assets/preview-home-page.png)
+![preview-post-page.png](./README.assets/preview-post-page.png)
+
 ## 项目结构
 
 待完善
