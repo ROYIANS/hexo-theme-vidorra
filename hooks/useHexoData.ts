@@ -65,6 +65,10 @@ class HexoData {
     return this.data.mood
   }
 
+  getFriends() {
+    return this.data.friends
+  }
+
   getMoodToday() {
     return this.data.mood.find(item => {
       return dayJs(item.date).format('YYYY-MM-DD') === dayJs().format('YYYY-MM-DD')

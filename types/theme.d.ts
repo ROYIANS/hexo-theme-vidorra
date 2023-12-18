@@ -68,6 +68,11 @@ export interface ThemeConfig extends Record<string, unknown> {
     icon: string,
     content: string
   },
+  friends: {
+    name: string,
+    background: string,
+    description: string
+  },
   secrets: {
     qweather_api_key?: string
   }
