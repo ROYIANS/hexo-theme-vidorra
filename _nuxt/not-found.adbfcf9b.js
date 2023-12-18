@@ -1,0 +1,23 @@
+import{t as B,u as I,_ as O}from"./default.vue.b15eccc7.js";import{A as F,E as d,C as R,d as $,G as N,H as g,J as u,L as f,M as V,N as M,a as v,e as L,h as y,f as m,q as S,p as C,i as z,m as W,c as T,l as w,F as P,bN as j,bO as D}from"./entry.ead83f6c.js";import{_ as E}from"./_plugin-vue_export-helper.c27b6911.js";import"./Header.vue.689e9ca1.js";import"./Tag.8b5bf260.js";import"./Footer.vue.0a9bbc9b.js";import"./useLocalCache.c2865fdc.js";import"./light.fb766011.js";import"./light.826b1ed8.js";import"./light.0a0ba5bf.js";import"./light.39437a9d.js";import"./light.5de8afbc.js";import"./use-merged-state.424fd017.js";import"./format-length.c9d165c6.js";const q=F("h",`
+ font-size: var(--n-font-size);
+ font-weight: var(--n-font-weight);
+ margin: var(--n-margin);
+ transition: color .3s var(--n-bezier);
+ color: var(--n-text-color);
+`,[d("&:first-child",{marginTop:0}),R("prefix-bar",{position:"relative",paddingLeft:"var(--n-prefix-width)"},[R("align-text",{paddingLeft:0},[d("&::before",{left:"calc(-1 * var(--n-prefix-width))"})]),d("&::before",`
+ content: "";
+ width: var(--n-bar-width);
+ border-radius: calc(var(--n-bar-width) / 2);
+ transition: background-color .3s var(--n-bezier);
+ left: 0;
+ top: 0;
+ bottom: 0;
+ position: absolute;
+ `),d("&::before",{backgroundColor:"var(--n-bar-color)"})])]),A=Object.assign(Object.assign({},g.props),{type:{type:String,default:"default"},prefix:String,alignText:Boolean}),p=e=>$({name:`H${e}`,props:A,setup(o){const{mergedClsPrefixRef:i,inlineThemeDisabled:r}=N(o),a=g("Typography","-h",q,B,o,i),n=u(()=>{const{type:s}=o,{common:{cubicBezierEaseInOut:l},self:{headerFontWeight:c,headerTextColor:h,[f("headerPrefixWidth",e)]:b,[f("headerFontSize",e)]:_,[f("headerMargin",e)]:x,[f("headerBarWidth",e)]:k,[f("headerBarColor",s)]:H}}=a.value;return{"--n-bezier":l,"--n-font-size":_,"--n-margin":x,"--n-bar-color":H,"--n-bar-width":k,"--n-font-weight":c,"--n-text-color":h,"--n-prefix-width":b}}),t=r?V(`h${e}`,u(()=>o.type[0]),n,o):void 0;return{mergedClsPrefix:i,cssVars:r?void 0:n,themeClass:t==null?void 0:t.themeClass,onRender:t==null?void 0:t.onRender}},render(){var o;const{prefix:i,alignText:r,mergedClsPrefix:a,cssVars:n,$slots:t}=this;return(o=this.onRender)===null||o===void 0||o.call(this),M(`h${e}`,{class:[`${a}-h`,`${a}-h${e}`,this.themeClass,{[`${a}-h--prefix-bar`]:i,[`${a}-h--align-text`]:r}],style:n},t)}}),G=p("1");p("2");p("3");p("4");p("5");p("6");const J=F("p",`
+ box-sizing: border-box;
+ transition: color .3s var(--n-bezier);
+ margin: var(--n-margin);
+ font-size: var(--n-font-size);
+ line-height: var(--n-line-height);
+ color: var(--n-text-color);
+`,[d("&:first-child","margin-top: 0;"),d("&:last-child","margin-bottom: 0;")]),K=Object.assign(Object.assign({},g.props),{depth:[String,Number]}),Q=$({name:"P",props:K,setup(e){const{mergedClsPrefixRef:o,inlineThemeDisabled:i}=N(e),r=g("Typography","-p",J,B,e,o),a=u(()=>{const{depth:t}=e,s=t||"1",{common:{cubicBezierEaseInOut:l},self:{pFontSize:c,pLineHeight:h,pMargin:b,pTextColor:_,[`pTextColor${s}Depth`]:x}}=r.value;return{"--n-bezier":l,"--n-font-size":c,"--n-line-height":h,"--n-margin":b,"--n-text-color":t===void 0?_:x}}),n=i?V("p",u(()=>`${e.depth||""}`),a,e):void 0;return{mergedClsPrefix:o,cssVars:i?void 0:a,themeClass:n==null?void 0:n.themeClass,onRender:n==null?void 0:n.onRender}},render(){var e;return(e=this.onRender)===null||e===void 0||e.call(this),M("p",{class:[`${this.mergedClsPrefix}-p`,this.themeClass],style:this.cssVars},this.$slots)}}),U=e=>(j("data-v-6ea58cb5"),e=e(),D(),e),X={class:"banner",style:{overflow:"hidden"}},Y={class:"banner-text"},Z=U(()=>m("span",null,"404",-1)),ee=$({__name:"not-found",setup(e){const o=I(),i=u(()=>o.value?"margin-top: 0; font-size: 64px !important":"margin-top: 0; font-size: 80px !important"),r=(n,t)=>{const s=t-n,l=Math.random();return n+Math.round(s*l)},a=n=>{const t=r(1,20)+10,s=.02*n,l=r(1,20)+20,c=["float","floatReverse","float2","floatReverse2"],h=c[r(0,c.length)];return{top:`${r(1,100)/(100+t/8)*100}%`,left:`${r(1,100)/(100+t/10)*100}%`,fontSize:`${t}px`,filter:`blur(${s}px)`,animation:`${l}s ${h} infinite`}};return(n,t)=>(v(),L(O,null,{default:y(()=>[m("div",X,[m("div",Y,[S(z(G),{style:C(z(i)),class:"naive-title"},{default:y(()=>[Z]),_:1},8,["style"]),S(z(Q),{style:{"font-size":"16px","margin-top":"0","margin-bottom":"0"}},{default:y(()=>[W(" notFound ")]),_:1})]),(v(),T(P,null,w(40,s=>m("span",{key:`4-${s}`,class:"particle",style:C(a(s))},"4",4)),64)),(v(),T(P,null,w(40,s=>m("span",{key:`0-${s}`,class:"particle",style:C(a(40+s))},"0",4)),64))])]),_:1}))}});const ue=E(ee,[["__scopeId","data-v-6ea58cb5"]]);export{ue as default};

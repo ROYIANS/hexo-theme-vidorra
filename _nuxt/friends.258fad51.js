@@ -1,0 +1,1 @@
+import{d as _,w as c,u as r,b as u,a as m,e as p,_ as i}from"./entry.ead83f6c.js";const h=_({__name:"friends",async setup(x){let e,o;const n=([e,o]=c(()=>r()),e=await e,o(),e);u();const t=n.getThemeConfig(),a=`${(t==null?void 0:t.theme)||"vidorra"}-friends`;return(d,f)=>{const s=i;return m(),p(s,{name:a})}}});export{h as default};
